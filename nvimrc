@@ -178,7 +178,7 @@ NeoBundle 'kana/vim-textobj-user'
 " Autocompletion
 NeoBundle 'Shougo/neocomplete.vim'
 " A Python plugin
-"NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
+NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes': ['python']}}
 " Admin virtualenvs
 NeoBundle 'jmcantrell/vim-virtualenv'
@@ -778,10 +778,10 @@ let g:pymode_lint_on_write = 0
 let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257']
 let g:pymode_lint_ignore = ''
 let g:pymode_virtualenv = 0
-let g:pymode_rope = 1
+let g:pymode_rope = 0
 
 let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 1
+let g:pymode_rope_complete_on_dot = 0
 
 " }}}
 
