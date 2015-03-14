@@ -15,7 +15,7 @@
 " |   :call Tabstyle_tabs = set tab to real tabs                              |
 " |   :call Tabstyle_spaces = set tab to 2 spaces                             |
 " |                                                                           |
-" | Put machine/user specific settings in ~/.vimrc.local                      |
+" | Put machine/user specific settings in ~/.nvimrc.local                      |
 " -----------------------------------------------------------------------------
 
 if has('vim_starting')
@@ -178,7 +178,7 @@ NeoBundle 'kana/vim-textobj-user'
 " Python {{{
 
 " Autocompletion
-NeoBundle 'Shougo/neocomplete.vim'
+"NeoBundle 'Shougo/neocomplete.vim'
 " A Python plugin
 NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes': ['python']}}
@@ -380,10 +380,10 @@ endfunction
 
 set backup
 set noswapfile
-set backupdir=$HOME/.vim/tmp/backup/
-set undodir=$HOME/.vim/tmp/undo/
-set directory=$HOME/.vim/tmp/swap/
-set viminfo+=n$HOME/.vim/tmp/viminfo
+set backupdir=$HOME/.nvim/tmp/backup/
+set undodir=$HOME/.nvim/tmp/undo/
+set directory=$HOME/.nvim/tmp/swap/
+set viminfo+=n$HOME/.nvim/tmp/viminfo
 
 " make this dirs if no exists previously
 silent! call MakeDirIfNoExists(&undodir)
@@ -795,7 +795,7 @@ let g:neocomplete#enable_refresh_always = 1
 let g:neocomplete#max_list = 30
 let g:neocomplete#min_keyword_length = 3
 let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#data_directory = $HOME.'/.vim/tmp/neocomplete'
+let g:neocomplete#data_directory = $HOME.'/.nvim/tmp/neocomplete'
 
 " disable the auto select feature by default to speed up writing without
 " obstacles (is optimal for certain situations)
@@ -837,14 +837,14 @@ let g:neocomplete#sources#omni#input_patterns.python='[^. \t]\.\w*'
 
 " Neobundle {{{
 
-let g:neobundle#log_filename = $HOME.'/.vim/tmp/neobundle.log'
+let g:neobundle#log_filename = $HOME.'/.nvim/tmp/neobundle.log'
 
 " }}}
 
 " neomru {{{
 
-let g:neomru#file_mru_path = $HOME.'/.vim/tmp/neomru/file'
-let g:neomru#directory_mru_path = $HOME.'/.vim/tmp/neomru/directory'
+let g:neomru#file_mru_path = $HOME.'/.nvim/tmp/neomru/file'
+let g:neomru#directory_mru_path = $HOME.'/.nvim/tmp/neomru/directory'
 
 " }}}
 
@@ -1483,7 +1483,7 @@ let g:unite_marked_icon = '✓'
 let g:unite_winheight = 15
 let g:unite_update_time = 200
 let g:unite_split_rule = 'botright'
-let g:unite_data_directory = $HOME.'/.vim/tmp/unite'
+let g:unite_data_directory = $HOME.'/.nvim/tmp/unite'
 let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
 let g:unite_source_file_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
 let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
@@ -1500,7 +1500,7 @@ elseif executable('ack')
     let g:unite_source_grep_search_word_highlight = 1
 endif
 
-let g:junkfile#directory=expand($HOME."/.vim/tmp/junk")
+let g:junkfile#directory=expand($HOME."/.nvim/tmp/junk")
 
 " }}}
 
@@ -1575,8 +1575,8 @@ endif
 " -----------------------------------------------------------------------------
 " |                               Host specific                               |
 " -----------------------------------------------------------------------------
-if filereadable(expand("~/.vimrc.local"))
-  source ~/.vimrc.local
+if filereadable(expand("~/.nvimrc.local"))
+  source ~/.nvimrc.local
 endif
 
 
