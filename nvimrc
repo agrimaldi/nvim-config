@@ -20,13 +20,13 @@
 
 if has('vim_starting')
     set nocompatible
-    set runtimepath+=~/.vim/bundle/neobundle.vim/
+    set runtimepath+=~/.nvim/bundle/neobundle.vim/
     filetype off
 endif
 
 filetype off
 
-call neobundle#begin(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.nvim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'Shougo/vimproc.vim', {
@@ -131,6 +131,8 @@ NeoBundle 'Shougo/vinarise.vim'
 
 " Text edition {{{
 
+" Floobits (Collaborative edition)
+NeoBundle 'floobits/floobits-neovim'
 " TagBar
 NeoBundle 'majutsushi/tagbar'
 " easy motion
