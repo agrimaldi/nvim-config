@@ -150,10 +150,8 @@ NeoBundle 'tpope/vim-surround'
 " extend repetitions by the 'dot' key
 NeoBundle 'tpope/vim-repeat'
 " toggle comments
-NeoBundle 'scrooloose/nerdcommenter'
-"NeoBundle 'tpope/vim-commentary'
-" smart digraphs insertion
-NeoBundle 'Rykka/easydigraph.vim'
+"NeoBundle 'scrooloose/nerdcommenter'
+NeoBundle 'tpope/vim-commentary'
 " browse the vim undo tree
 NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
 " to insert lorem ipsum blocks
@@ -207,7 +205,6 @@ NeoBundle 'SirVer/ultisnips'
 " Syntax {{{
 
 NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
-NeoBundleLazy 'joedicastro/vim-pentadactyl', {'autoload': {'filetypes': ['pentadactyl']}}
 NeoBundle 'scrooloose/syntastic'
 
 " }}}
@@ -538,7 +535,7 @@ set pastetoggle=<F3>
 
 " Spelling {{{
 
-" turn on the spell checking and set the Spanish language
+" turn on the spell checking and set the French language
 nmap <Leader>sf :setlocal spell spelllang=fr<CR>
 " turn on the spell checking and set the English language
 nmap <Leader>se :setlocal spell spelllang=en<CR>
@@ -657,12 +654,6 @@ let g:airline_symbols.linenr = '⭡'
 " delimitmate {{{
 
 let delimitMate_expand_space = 1
-
-" }}}
-
-" easydigraph {{{
-
-let g:EasyDigraph_nmap = '<Leader>dd'
 
 " }}}
 
@@ -851,31 +842,28 @@ let g:neomru#directory_mru_path = $HOME.'/.nvim/tmp/neomru/directory'
 " Syntastic {{{
 
 nmap <silent><Leader>N :SyntasticCheck<CR>:Errors<CR>
-
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 let g:syntastic_python_pylint_exe = "pylint2"
-let g:syntastic_mode_map = { 'mode': 'active',
-            \ 'active_filetypes': [],
-            \ 'passive_filetypes': ['python'] }
-
+let g:syntastic_mode_map = {'mode': 'active', 'active_filetypes': [], 'passive_filetypes': ['python']}
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 let g:syntastic_style_error_symbol  = '⚡'
 let g:syntastic_style_warning_symbol  = '⚡'
 
 " }}}
- "::::::::::::   UltiSnips   :::::::::::::
+
+" UltiSnips {{{
+
 imap <C-l> <C-r>=UltiSnips_ListSnippets()<CR>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
+" }}}
 
 " Unite {{{
-
 " files
 nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>
 nnoremap <silent><Leader>p :Unite -silent -start-insert file_rec/async<CR>
