@@ -150,8 +150,7 @@ NeoBundle 'tpope/vim-surround'
 " extend repetitions by the 'dot' key
 NeoBundle 'tpope/vim-repeat'
 " toggle comments
-"NeoBundle 'scrooloose/nerdcommenter'
-NeoBundle 'tpope/vim-commentary'
+NeoBundle 'scrooloose/nerdcommenter'
 " browse the vim undo tree
 NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
 " to insert lorem ipsum blocks
