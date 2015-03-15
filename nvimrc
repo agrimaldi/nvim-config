@@ -161,13 +161,6 @@ NeoBundle 'tpope/vim-characterize'
 NeoBundleLazy 'salsifis/vim-transpose', { 'autoload' :{ 'commands' : 'Transpose'}}
 " marks admin
 NeoBundle 'kshenoy/vim-signature'
-" text-objects
-NeoBundle 'kana/vim-textobj-entire' " ae, ie
-NeoBundle 'kana/vim-textobj-indent' " ai, ii, aI, iI
-NeoBundle 'kana/vim-textobj-lastpat' " a/, i/, a?, i?
-NeoBundle 'kana/vim-textobj-line' " al, il
-NeoBundle 'kana/vim-textobj-underscore' " a_, i_
-NeoBundle 'kana/vim-textobj-user'
 
 " }}}
 
@@ -190,6 +183,12 @@ NeoBundleLazy 'alfredodeza/coveragepy.vim', {'autoload': {'filetypes': ['python'
 
 " }}}
 
+" Tags {{{
+
+" Guntentags
+NeoBundle 'ludovicchabant/vim-gutentags'
+
+" }}}
 
 " Code Snippets {{{
 
@@ -755,10 +754,18 @@ let g:indentLine_color_term = 239
 
 " }}}
 
+" Gutentags {{{
+
+let g:gutentags_exclude = ['venv', 'build', 'static', 'node_modules']
+let g:gutentags_executable = '/usr/local/bin/ctags'
+set statusline+=%{gutentags#statusline()}
+
+" }}}
+
 " PythonMode {{{
 
 let g:jedi#auto_vim_configuration = 1
-let g:jedi#completions_enabled = 0
+let g:jedi#completions_enabled = 1
 let g:jedi#popup_select_first = 0
 
 nmap <silent><Leader>n :PymodeLint<CR>
