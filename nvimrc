@@ -185,7 +185,7 @@ NeoBundleLazy 'alfredodeza/coveragepy.vim', {'autoload': {'filetypes': ['python'
 " Tags {{{
 
 " Guntentags
-NeoBundle 'ludovicchabant/vim-gutentags'
+NeoBundleLazy 'ludovicchabant/vim-gutentags', {'autoload': {'filetypes': ['vim', 'c', 'cpp']}}
 
 " }}}
 
@@ -761,6 +761,7 @@ let g:indentLine_color_term = 239
 
 let g:gutentags_exclude = ['venv', 'build', 'static', 'node_modules']
 let g:gutentags_executable = '/usr/local/bin/ctags'
+let g:gutentags_tagfile = '.tags'
 set statusline+=%{gutentags#statusline()}
 
 " }}}
