@@ -352,8 +352,6 @@ let g:unite_source_menu_menus.code.command_candidates = [
         \'VimuxInspectRunner'],
     \['▷ close tmux panel                           (vimux)         ⌘ ,rq',
         \'VimuxCloseRunner'],
-    \['▷ sort imports                               (isort)',
-        \'Isort'],
     \['▷ go to definition                           (pymode-rope)   ⌘ C-C g',
         \'call pymode#rope#goto_definition()'],
     \['▷ find where a function is used              (pymode-rope)   ⌘ C-C f',
