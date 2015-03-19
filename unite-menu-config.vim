@@ -331,7 +331,7 @@ let g:unite_source_menu_menus.code.command_candidates = [
     \['▷ show docs for the current word             (pymode)        ⌘ K',
         \'normal K'],
     \['▷ insert a breakpoint                        (pymode)        ⌘ ,B',
-        \'normal ,B'],
+        \'normal <F6>'],
     \['▷ pylint check                               (pymode)        ⌘ ,n',
         \'PymodeLint'],
     \['▷ run with python2 in tmux panel             (vimux)         ⌘ ,rr',
@@ -560,45 +560,5 @@ let g:unite_source_menu_menus.vim.command_candidates = [
         \'Unite -start-insert launcher'],
     \]
 nnoremap <silent>[menu]v :Unite menu:vim -silent -start-insert<CR>
-
-" }}}
-
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
-call unite#custom#source('file_mru,file_rec,file_rec/async,grep,locate',
-        \ 'ignore_pattern', join([
-        \ '\.git/',
-        \ 'tmp/',
-        \ 'bundle/'
-        \ ], '\|'))
-
-let g:unite_source_history_yank_enable = 1
-let g:unite_enable_start_insert = 0
-let g:unite_enable_short_source_mes = 0
-let g:unite_force_overwrite_statusline = 0
-let g:unite_prompt = '>>> '
-let g:unite_marked_icon = '✓'
-" let g:unite_candidate_icon = '∘'
-let g:unite_winheight = 15
-let g:unite_update_time = 200
-let g:unite_split_rule = 'botright'
-let g:unite_data_directory = $HOME.'/.nvim/tmp/unite'
-let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
-let g:unite_source_file_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
-let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
-
-if executable('ag')
-    let g:unite_source_grep_command='ag'
-    let g:unite_source_grep_default_opts='--nocolor --nogroup -a -S'
-    let g:unite_source_grep_recursive_opt=''
-    let g:unite_source_grep_search_word_highlight = 1
-elseif executable('ack')
-    let g:unite_source_grep_command='ack'
-    let g:unite_source_grep_default_opts='--no-group --no-color'
-    let g:unite_source_grep_recursive_opt=''
-    let g:unite_source_grep_search_word_highlight = 1
-endif
-
-let g:junkfile#directory=expand($HOME."/.nvim/tmp/junk")
 
 " }}}

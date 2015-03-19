@@ -773,7 +773,7 @@ let g:jedi#popup_select_first = 0
 
 nmap <silent><Leader>n :PymodeLint<CR>
 
-let g:pymode_breakpoint_bind = '<Leader>B'
+let g:pymode_breakpoint_bind = '<F6>'
 
 let g:pymode_lint = 1
 let g:pymode_lint_on_write = 0
@@ -890,10 +890,57 @@ let g:multi_cursor_quit_key='<Esc>'
 
 
 " Unite {{{
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+call unite#filters#sorter_default#use(['sorter_rank'])
+
+call unite#custom#source('file_rec,file_rec/async,file_mru,file,buffer,grep',
+            \ 'ignore_pattern', join([
+            \ '\.swp', '\.swo', '\~$',
+            \ '\.git/', '\.svn/', '\.hg/',
+            \ '^tags$', '\.taghl$',
+            \ '\.ropeproject/',
+            \ 'node_modules/', 'log/', 'tmp/', 'obj/',
+            \ '/vendor/gems/', '/vendor/cache/', '\.bundle/', '\.sass-cache/',
+            \ '/tmp/cache/assets/.*/sprockets/', '/tmp/cache/assets/.*/sass/',
+            \ 'thirdparty/', 'Debug/', 'Release/',
+            \ '\.pyc$', '\.class$', '\.jar$',
+            \ '\.jpg$', '\.jpeg$', '\.bmp$', '\.png$', '\.gif$',
+            \ '\.o$', '\.out$', '\.obj$', '\.rbc$', '\.rbo$', '\.gem$',
+            \ '\.zip$', '\.tar\.gz$', '\.tar\.bz2$', '\.rar$', '\.tar\.xz$'
+            \ ], '\|'))
+
+let g:unite_source_history_yank_enable = 1
+let g:unite_enable_start_insert = 0
+let g:unite_enable_short_source_mes = 0
+let g:unite_force_overwrite_statusline = 0
+let g:unite_prompt = '>>> '
+let g:unite_marked_icon = '✓'
+" let g:unite_candidate_icon = '∘'
+let g:unite_winheight = 15
+let g:unite_update_time = 200
+let g:unite_split_rule = 'botright'
+let g:unite_data_directory = $HOME.'/.nvim/tmp/unite'
+let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
+let g:unite_source_file_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
+let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
+
+if executable('ag')
+    let g:unite_source_grep_command='ag'
+    let g:unite_source_grep_default_opts='--line-numbers --nocolor --nogroup -a -S'
+    let g:unite_source_grep_recursive_opt=''
+    let g:unite_source_grep_search_word_highlight = 1
+elseif executable('ack')
+    let g:unite_source_grep_command='ack'
+    let g:unite_source_grep_default_opts='--no-group --no-color'
+    let g:unite_source_grep_recursive_opt=''
+    let g:unite_source_grep_search_word_highlight = 1
+endif
+
+let g:junkfile#directory=expand($HOME."/.nvim/tmp/junk")
+
 " files
-nnoremap <silent><Leader>o :Unite -silent -start-insert file<CR>
-nnoremap <silent><Leader>p :Unite -silent -start-insert file_rec/async<CR>
-nnoremap <silent><Leader>m :Unite -silent file_mru<CR>
+nnoremap <silent><Leader>p :Unite -silent -start-insert file_mru file_rec/async<CR>
 " buffers
 nnoremap <silent><Leader>b :Unite -silent buffer<CR>
 " tabs
@@ -902,11 +949,13 @@ nnoremap <silent><Leader>B :Unite -silent tab<CR>
 nnoremap <silent><Leader>f :Unite -silent -no-split -start-insert -auto-preview line<CR>
 nnoremap <silent>[menu]8 :UniteWithCursorWord -silent -no-split -auto-preview line<CR>
 " yankring
-nnoremap <silent><Leader>i :Unite -silent history/yank<CR>
+nnoremap <silent><Leader>y :Unite -silent history/yank<CR>
 " grep
-nnoremap <silent><Leader>a :Unite -silent -no-quit grep<CR>
+nnoremap <silent><Leader>a :Unite -silent -auto-preview -auto-highlight -no-split grep:.<CR>
+" se(a)rch (w)ord in current directory
+nnoremap <silent><Leader>aw :UniteWithCursorWord -silent -auto-preview -auto-highlight -no-split grep:.<CR>
 " help
-nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>
+"nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>
 " tasks
 nnoremap <silent><Leader>; :Unite -silent -toggle grep:%::FIXME\|TODO\|NOTE\|XXX\|COMBAK\|@todo<CR>
 " junk files
@@ -915,6 +964,7 @@ nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
 " menu
 so ~/.nvim/unite-menu-config.vim
 
+" }}}
 
 
 " end PLUGINS Setup }}}
