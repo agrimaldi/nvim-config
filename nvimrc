@@ -590,13 +590,23 @@ map <Leader>ef :Unite output:WordFrequency<CR>
 
 " }}}
 
+
 " Count lines of code {{{
 
 function! LinesOfCode()
     echo system('cloc --quiet '.bufname("%"))
 endfunction
 
-"}}}
+" }}}
+
+
+" Execute commands silently {{{
+
+command! -nargs=1 Silent
+\ | execute ':silent !'.<q-args>
+\ | execute ':redraw!'
+
+" }}}
 
 
 " Execution permissions by default to shebang (#!) files {{{
@@ -772,6 +782,9 @@ let g:jedi#completions_enabled = 1
 let g:jedi#popup_select_first = 0
 
 nmap <silent><Leader>n :PymodeLint<CR>
+
+" Install current package
+nmap <silent><F5> :Silent /usr/local/anaconda3/bin/pip install --upgrade .<CR>
 
 let g:pymode_breakpoint_bind = '<F6>'
 
