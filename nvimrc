@@ -160,6 +160,8 @@ NeoBundle 'tpope/vim-characterize'
 NeoBundleLazy 'salsifis/vim-transpose', { 'autoload' :{ 'commands' : 'Transpose'}}
 " marks admin
 NeoBundle 'kshenoy/vim-signature'
+" Restore views
+NeoBundle 'vim-scripts/restore_view.vim'
 
 " }}}
 
@@ -364,6 +366,15 @@ function! MakeDirIfNoExists(path)
         call mkdir(expand(a:path), "p")
     endif
 endfunction
+
+" }}}
+
+
+" Views {{{
+
+set viewdir=$HOME/.nvim/views/
+silent! call MakeDirIfNoExists(&viewdir)
+set viewoptions=cursor,folds,slash,unix
 
 " }}}
 
