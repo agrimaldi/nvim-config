@@ -792,8 +792,6 @@ let g:jedi#auto_vim_configuration = 1
 let g:jedi#completions_enabled = 1
 let g:jedi#popup_select_first = 0
 
-nmap <silent><Leader>n :PymodeLint<CR>
-
 " Install current package
 nmap <silent><F5> :Silent /usr/local/anaconda3/bin/pip install --upgrade .<CR>
 
@@ -805,13 +803,19 @@ let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257']
 let g:pymode_lint_ignore = ''
 let g:pymode_virtualenv = 0
 
+nmap <silent><Leader>n :PymodeLint<CR>
+
 let g:pymode_rope = 1
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
 
-let g:pymode_rope_goto_definition_bind = '<Leader>rg'
-let g:pymode_rope_rename_bind = '<Leader>rr'
-let g:pymode_rope_rename_module_bind = '<Leader>r1r'
+let g:pymode_rope_goto_definition_bind = ''
+let g:pymode_rope_rename_bind = ''
+let g:pymode_rope_rename_module_bind = ''
+
+let g:jedi#goto_assignments_command = '<Leader>rg'
+let g:jedi#goto_definitions_command = '<Leader>rgr'
+let g:jedi#rename_command = '<Leader>rr'
 
 " }}}
 
