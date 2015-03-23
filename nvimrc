@@ -614,6 +614,7 @@ endfunction
 " Execute commands silently {{{
 
 command! -nargs=1 Silent
+\ | execute ':wa'
 \ | execute ':silent !'.<q-args>
 \ | execute ':redraw!'
 
@@ -786,7 +787,7 @@ set statusline+=%{gutentags#statusline()}
 " }}}
 
 
-" PythonMode {{{
+" PythonMode / Jedi {{{
 
 let g:jedi#auto_vim_configuration = 1
 let g:jedi#completions_enabled = 1
@@ -809,12 +810,10 @@ let g:pymode_rope = 1
 let g:pymode_rope_completion = 0
 let g:pymode_rope_complete_on_dot = 0
 
-let g:pymode_rope_goto_definition_bind = ''
+let g:pymode_rope_goto_definition_bind = '<Leader>rg'
 let g:pymode_rope_rename_bind = ''
 let g:pymode_rope_rename_module_bind = ''
 
-let g:jedi#goto_assignments_command = '<Leader>rg'
-let g:jedi#goto_definitions_command = '<Leader>rgr'
 let g:jedi#rename_command = '<Leader>rr'
 
 " }}}
