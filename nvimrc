@@ -310,6 +310,9 @@ set nofoldenable                " Turn off folding
 set pdev=pdf
 set printoptions=paper:A4,syntax:y,wrap:y,number:y
 
+" Makes Esc work to get out of terminal mode
+tnoremap <Esc> <c-\><c-n>
+
 " }}}
 
 
