@@ -185,7 +185,7 @@ NeoBundleLazy 'alfredodeza/coveragepy.vim', {'autoload': {'filetypes': ['python'
 " Tags {{{
 
 " Guntentags
-NeoBundleLazy 'ludovicchabant/vim-gutentags', {'autoload': {'filetypes': ['vim', 'c', 'cpp']}}
+"NeoBundleLazy 'ludovicchabant/vim-gutentags', {'autoload': {'filetypes': ['vim', 'c', 'cpp']}}
 
 " }}}
 
