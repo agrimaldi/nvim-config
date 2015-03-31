@@ -189,6 +189,12 @@ NeoBundleLazy 'alfredodeza/coveragepy.vim', {'autoload': {'filetypes': ['python'
 
 " }}}
 
+" Smart visual mode {{{
+
+NeoBundle 'terryma/vim-expand-region'
+
+" }}}
+
 " Code Snippets {{{
 
 " Powerful and advanced Snippets tool
@@ -775,17 +781,35 @@ let g:indentLine_color_term = 239
 
 " Markdown {{{
 
-"let g:instant_markdown_autostart = 0
+let g:expand_region_text_objects = {
+      \ 'iw'  :0,
+      \ 'iW'  :0,
+      \ 'i"'  :1,
+      \ 'i''' :1,
+      \ 'i]'  :1,
+      \ 'ib'  :1,
+      \ 'iB'  :1,
+      \ 'il'  :1,
+      \ 'ip'  :1,
+      \ 'ie'  :0,
+      \ }
+
+" }}}
+
+
+" Markdown {{{
+
+let g:instant_markdown_autostart = 0
 
 " }}}
 
 
 " Gutentags {{{
 
-let g:gutentags_exclude = ['venv', 'build', 'static', 'node_modules']
-let g:gutentags_executable = '/usr/local/bin/ctags'
-let g:gutentags_tagfile = '.tags'
-set statusline+=%{gutentags#statusline()}
+"let g:gutentags_exclude = ['venv', 'build', 'static', 'node_modules']
+"let g:gutentags_executable = '/usr/local/bin/ctags'
+"let g:gutentags_tagfile = '.tags'
+"set statusline+=%{gutentags#statusline()}
 
 " }}}
 
@@ -1021,6 +1045,8 @@ set numberwidth=4
 "set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 
 
+" Abbreviations
+:iabbrev @@ alexis.grimaldi@gmail.com
 
 
 " -----------------------------------------------------------------------------
