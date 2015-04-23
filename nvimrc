@@ -134,6 +134,8 @@ NeoBundle 'Shougo/vinarise.vim'
 NeoBundle 'floobits/floobits-neovim'
 " TagBar
 NeoBundle 'majutsushi/tagbar'
+" Sneak - minimalistic easymotion
+NeoBundle 'justinmk/vim-sneak'
 " easy motion
 NeoBundle 'Lokaltog/vim-easymotion'
 " multiple curosors
@@ -238,25 +240,9 @@ let g:LatexBox_autojump = 1
 " |              Colors             |
 " -----------------------------------
 
-NeoBundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
-
-
 " Colorschemes {{{
 
-" Dark themes
-" Improved terminal version of molokai, almost identical to the GUI one
-"NeoBundle 'joedicastro/vim-molokai256'
-
-"NeoBundle 'tomasr/molokai'
-"NeoBundleLazy 'sjl/badwolf', { 'autoload':{ 'unite_sources' : 'colorscheme', }}
-"NeoBundleLazy 'nielsmadan/harlequin', { 'autoload':{ 'unite_sources' : 'colorscheme', }}
-
-" Light themes
-"NeoBundleLazy 'vim-scripts/summerfruit256.vim', { 'autoload':{ 'unite_sources' : 'colorscheme', }}
-"NeoBundleLazy 'joedicastro/vim-github256', { 'autoload':{ 'unite_sources' : 'colorscheme', }}
-
-" Make terminal themes from GUI themes
-"NeoBundleLazy 'godlygeek/csapprox', { 'autoload':{ 'commands' : ['CSApprox', 'CSApproxSnapshot']}}
+NeoBundle 'morhetz/gruvbox'
 
 " }}}
 
@@ -268,11 +254,12 @@ NeoBundleCheck
 " Color scheme {{{
 
 syntax on
-set t_Co=256 " 256 colors
+"set t_Co=256 " 256 colors
 "colorscheme Jellybeans
-colorscheme Tomorrow-Night
-"set background=dark
-"colorscheme solarized
+colorscheme gruvbox
+"colorscheme Tomorrow-Night
+"colorscheme molokai
+set background=dark
 hi Normal ctermbg=NONE
 "highlight clear SignColumn
 
@@ -816,31 +803,24 @@ let g:instant_markdown_autostart = 0
 
 " PythonMode / Jedi {{{
 
+let g:pymode_lint = 0
+let g:pymode_rope = 0
+let g:pymode_syntax_all = 1
+
 let g:jedi#auto_vim_configuration = 1
 let g:jedi#completions_enabled = 1
 let g:jedi#popup_select_first = 0
+let g:jedi#popup_on_dot = 0
+let g:jedi#use_tabs_not_buffers = 0
+
 
 " Install current package
 nmap <silent><F5> :Silent /usr/local/anaconda3/bin/pip install --upgrade .<CR>
 
 let g:pymode_breakpoint_bind = '<F6>'
 
-let g:pymode_lint = 1
-let g:pymode_lint_on_write = 0
-let g:pymode_lint_checkers = ['pylint', 'pep8', 'mccabe', 'pep257']
-let g:pymode_lint_ignore = ''
-let g:pymode_virtualenv = 0
-
-nmap <silent><Leader>n :PymodeLint<CR>
-
-let g:pymode_rope = 1
-let g:pymode_rope_completion = 0
-let g:pymode_rope_complete_on_dot = 0
-
-let g:pymode_rope_goto_definition_bind = '<Leader>rg'
-let g:pymode_rope_rename_bind = ''
-let g:pymode_rope_rename_module_bind = ''
-
+let g:jedi#goto_assignments_command = '<Leader>rg'
+let g:jedi#goto_definitions_command = '<Leader>rgg'
 let g:jedi#rename_command = '<Leader>rr'
 
 " }}}
