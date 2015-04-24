@@ -164,6 +164,8 @@ NeoBundleLazy 'salsifis/vim-transpose', { 'autoload' :{ 'commands' : 'Transpose'
 NeoBundle 'kshenoy/vim-signature'
 " Restore views
 NeoBundle 'vim-scripts/restore_view.vim'
+" Dash bindings
+NeoBundle 'rizzatti/dash.vim'
 
 " }}}
 
@@ -798,7 +800,14 @@ let g:instant_markdown_autostart = 0
 " }}}
 
 
-" PythonMode / Jedi {{{
+" Dash {{{
+
+nmap - <Plug>DashSearch
+
+" }}}
+
+
+" Python {{{
 
 let g:pymode_lint = 0
 let g:pymode_rope = 0
