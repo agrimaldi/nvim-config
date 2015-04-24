@@ -253,15 +253,12 @@ NeoBundleCheck
 
 " Color scheme {{{
 
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 syntax on
 "set t_Co=256 " 256 colors
-"colorscheme Jellybeans
 colorscheme gruvbox
-"colorscheme Tomorrow-Night
-"colorscheme molokai
 set background=dark
 hi Normal ctermbg=NONE
-"highlight clear SignColumn
 
 " }}}
 
