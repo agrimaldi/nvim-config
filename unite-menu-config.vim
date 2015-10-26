@@ -262,8 +262,6 @@ let g:unite_source_menu_menus.git = {
         \                                ⌘ ,g',
     \}
 let g:unite_source_menu_menus.git.command_candidates = [
-    \['▷ tig                                                        ⌘ ,gt',
-        \'normal ,gt'],
     \['▷ git viewer             (gitv)                              ⌘ ,gv',
         \'normal ,gv'],
     \['▷ git viewer - buffer    (gitv)                              ⌘ ,gV',
@@ -310,12 +308,10 @@ let g:unite_source_menu_menus.git.command_candidates = [
         \'Glcd'],
     \['▷ git browse             (fugitive)                          ⌘ ,gB',
         \'Gbrowse'],
-    \['▷ github dashboard       (github-dashboard)                  ⌘ ,gD',
-        \'exe "GHD! " input("Username: ")'],
-    \['▷ github activity        (github-dashboard)                  ⌘ ,gA',
-        \'exe "GHA! " input("Username or repository: ")'],
     \['▷ github issues & PR                                         ⌘ ,gS',
         \'normal ,gS'],
+    \['▷ github branch management                                   ⌘ ,gM',
+        \'normal ,gM'],
     \]
 nnoremap <silent>[menu]g :Unite -silent -winheight=29 -start-insert menu:git<CR>
 " }}}

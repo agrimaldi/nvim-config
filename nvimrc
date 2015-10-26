@@ -74,7 +74,6 @@ NeoBundle 'kopischke/unite-spell-suggest'
 "NeoBundle 'pangloss/vim-javascript'
 "NeoBundle 'kelan/gyp.vim'
 "NeoBundle 'vim-scripts/Vim-R-plugin'
-"NeoBundle 'JuliaLang/julia-vim'
 "NeoBundle 'fatih/vim-go'
 "NeoBundle 'vim-scripts/plist.vim'
 "let vimrplugin_screenplugin = 0
@@ -98,11 +97,10 @@ let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
 NeoBundle 'tpope/vim-fugitive', {'augroup': 'fugitive'}
 " Git gutter
 NeoBundle 'airblade/vim-gitgutter'
+" Merginal
+NeoBundle 'idanarye/vim-merginal', {'depends':['tpope/vim-fugitive']}
 " Git viewer
 NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}}
-" Browse GitHub events in Vim
-NeoBundle 'joedicastro/vim-github-dashboard'
-
 " }}}
 
 
@@ -122,8 +120,6 @@ NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}
 
 " A diff tool for directories
 NeoBundleLazy 'joedicastro/DirDiff.vim', { 'autoload': { 'commands' : 'DirDiff'}}
-" Hexadecimal editor
-NeoBundle 'Shougo/vinarise.vim'
 
 " }}}
 
@@ -131,11 +127,9 @@ NeoBundle 'Shougo/vinarise.vim'
 " Text edition {{{
 
 " Floobits (Collaborative edition)
-NeoBundle 'floobits/floobits-neovim'
+"NeoBundle 'floobits/floobits-neovim'
 " TagBar
 NeoBundle 'majutsushi/tagbar'
-" Sneak - minimalistic easymotion
-NeoBundle 'justinmk/vim-sneak'
 " easy motion
 NeoBundle 'Lokaltog/vim-easymotion'
 " multiple curosors
@@ -158,10 +152,6 @@ NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
 NeoBundleLazy 'vim-scripts/loremipsum', { 'autoload' :{ 'commands' : 'Loremipsum'}}
 " reveals all the character info, Unicode included
 NeoBundle 'tpope/vim-characterize'
-" transpose lines and text blocks
-NeoBundleLazy 'salsifis/vim-transpose', { 'autoload' :{ 'commands' : 'Transpose'}}
-" marks admin
-NeoBundle 'kshenoy/vim-signature'
 " Restore views
 NeoBundle 'vim-scripts/restore_view.vim'
 " Dash bindings
@@ -175,14 +165,19 @@ NeoBundle 'rizzatti/dash.vim'
 " Autocompletion
 "NeoBundle 'Shougo/neocomplete.vim'
 " A Python plugin
-NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes': ['python']}}
-" Admin virtualenvs
-NeoBundle 'jmcantrell/vim-virtualenv'
+NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
 " Show indent lines
 NeoBundleLazy 'Yggdroot/indentLine', {'autoload': {'filetypes': ['python']}}
 " Show reports from coverage.py
 NeoBundleLazy 'alfredodeza/coveragepy.vim', {'autoload': {'filetypes': ['python']}}
+
+" }}}
+"
+"
+" Julia {{{
+
+NeoBundle 'JuliaLang/julia-vim'
 
 " }}}
 
@@ -195,7 +190,7 @@ NeoBundleLazy 'alfredodeza/coveragepy.vim', {'autoload': {'filetypes': ['python'
 
 " Smart visual mode {{{
 
-NeoBundle 'terryma/vim-expand-region'
+"NeoBundle 'terryma/vim-expand-region'
 
 " }}}
 
@@ -225,6 +220,8 @@ NeoBundle 'bling/vim-airline'
 NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :{'commands' : 'ZoomWinTabToggle'}}
 " easily window resizing
 NeoBundle 'jimsei/winresizer'
+" Window and workspace management
+NeoBundle 'szw/vim-ctrlspace'
 
 " }}}
 
@@ -290,6 +287,7 @@ set ttyfast                     " better screen redraw
 set title                       " set the terminal title to the current file
 set showcmd                     " shows partial commands
 set hidden                      " hide the inactive buffers
+set showtabline=1               " hide the tabline
 set ruler                       " sets a permanent rule
 set lazyredraw                  " only redraws if it is needed
 set autoread                    " update a open file edited outside of Vim
@@ -417,7 +415,7 @@ set autoindent                 " set on the auto-indent
 " set formatoptions=qrn1ct
 "set formatoptions=qrn1
 set linebreak  " Wrap at word
-set textwidth=80
+set textwidth=0
 set colorcolumn=81
 
 function! ToggleWrap()
@@ -433,12 +431,12 @@ function! ToggleWrap()
     if s:curr_cc_guibg != s:nowrap_cc_bg[1]
         let g:curr_cc_guibg = s:curr_cc_guibg
     endif
-    if &textwidth == 80
-        set textwidth=0
+    if &textwidth == 0
+        set textwidth=80
         exec 'hi ColorColumn ctermbg='.s:nowrap_cc_bg[0].
                     \' guibg='.s:nowrap_cc_bg[1]
-    elseif &textwidth == 0
-        set textwidth=80
+    elseif &textwidth == 80
+        set textwidth=0
         exec 'hi ColorColumn ctermbg='.g:curr_cc_ctermbg.
                     \' guibg='.g:curr_cc_guibg
     endif
@@ -472,11 +470,14 @@ behave xterm
 
 " Editing {{{
 
-map <S-Enter> O<ESC> " awesome, inserts new line without going into insert mode
+map <S-Enter> O<ESC>
 map <Enter> o<ESC>
 
 " reselect last selected chunk
 nnoremap <leader>V V`]
+
+" Centers the marked line when jumping
+map <expr> ' printf('`%c zz',getchar())
 
 " }}}
 
@@ -511,6 +512,13 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
+
+" }}}
+
+" Zoom on buffer
+
+let g:zoomwintab_remap = 0
+nnoremap <C-w><C-o> :ZoomWinTabToggle<CR>
 
 " }}}
 
@@ -568,40 +576,6 @@ noremap <Leader>eh :set list!<CR>
 " Delete trailing whitespaces {{{
 
 nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-
-" }}}
-
-
-" Text statistics {{{
-
-" get the total of lines, words, chars and bytes (and for the current position)
-map <Leader>es g<C-G>
-
-" get the word frequency in the text
-function! WordFrequency() range
-    let all = split(join(getline(a:firstline, a:lastline)), '\A\+')
-    let frequencies = {}
-    for word in all
-        let frequencies[word] = get(frequencies, word, 0) + 1
-    endfor
-    let lst = []
-    for [key,value] in items(frequencies)
-        call add(lst, value."\t".key."\n")
-    endfor
-    call sort(lst)
-    echo join(lst)
-endfunction
-command! -range=% WordFrequency <line1>,<line2>call WordFrequency()
-map <Leader>ef :Unite output:WordFrequency<CR>
-
-" }}}
-
-
-" Count lines of code {{{
-
-function! LinesOfCode()
-    echo system('cloc --quiet '.bufname("%"))
-endfunction
 
 " }}}
 
@@ -686,7 +660,6 @@ nnoremap <Leader>ge :Gedit<CR>
 nnoremap <Leader>gE :Gedit<Space>
 nnoremap <Leader>gl :exe "silent Glog <Bar> Unite -no-quit quickfix"<CR>:redraw!<CR>
 nnoremap <Leader>gL :exe "silent Glog -- <Bar> Unite -no-quit quickfix"<CR>:redraw!<CR>
-nnoremap <Leader>gt :!tig<CR>:redraw!<CR>
 nnoremap <Leader>gS :exe "silent !shipit"<CR>:redraw!<CR>
 nnoremap <Leader>gg :exe 'silent Ggrep -i '.input("Pattern: ")<Bar>Unite quickfix -no-quit<CR>
 nnoremap <Leader>ggm :exe 'silent Glog --grep='.input("Pattern: ").' <Bar>Unite -no-quit quickfix'<CR>
@@ -703,6 +676,13 @@ noremap <Leader>dq :Gdiffoff<CR>
 " }}}
 
 
+" Merginal {{{
+
+nnoremap <Leader>gM :MerginalToggle<CR>
+
+" }}}
+
+
 " Gitv {{{
 
 nnoremap <silent> <leader>gv :Gitv --all<CR>
@@ -715,34 +695,6 @@ let g:Gitv_DoNotMapCtrlKey = 1
 " let g:Gitv_WrapLines = 1
 
 autocmd FileType git set nofoldenable
-
-" }}}
-
-
-" GitHub dashboard {{{
-
-nnoremap <Leader>gD :exe 'GHD! '.input("Username: ")<CR>
-nnoremap <Leader>gA :exe 'GHA! '.input("Username or repository: ")<CR>
-
-function! GHDashboard (...)
-  if &filetype == 'github-dashboard'
-    " first variable is the statusline builder
-    let builder = a:1
-
-    call builder.add_section('airline_a', 'GitHub ')
-    call builder.add_section('airline_b',
-                \ ' %{get(split(get(split(github_dashboard#statusline(), " "),
-                \ 1, ""), ":"), 0, "")} ')
-    call builder.add_section('airline_c',
-                \ ' %{get(split(get(split(github_dashboard#statusline(), " "),
-                \ 2, ""), "]"), 0, "")} ')
-
-    " tell the core to use the contents of the builder
-    return 1
-  endif
-endfunction
-
-autocmd FileType github-dashboard call airline#add_statusline_func('GHDashboard')
 
 " }}}
 
@@ -765,7 +717,7 @@ let g:indentLine_color_term = 239
 " }}}
 
 
-" Markdown {{{
+" Expanding region selection {{{
 
 let g:expand_region_text_objects = {
       \ 'iw'  :0,
@@ -790,16 +742,6 @@ let g:instant_markdown_autostart = 0
 " }}}
 
 
-" Gutentags {{{
-
-"let g:gutentags_exclude = ['venv', 'build', 'static', 'node_modules']
-"let g:gutentags_executable = '/usr/local/bin/ctags'
-"let g:gutentags_tagfile = '.tags'
-"set statusline+=%{gutentags#statusline()}
-
-" }}}
-
-
 " Dash {{{
 
 nmap - <Plug>DashSearch
@@ -809,7 +751,7 @@ nmap - <Plug>DashSearch
 
 " Python {{{
 
-let g:pymode_lint = 0
+let g:pymode_lint = 1
 let g:pymode_rope = 0
 let g:pymode_syntax_all = 1
 
@@ -871,6 +813,7 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType julia setlocal omnifunc=LaTeXtoUnicode#omnifunc
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
@@ -933,6 +876,20 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }}}
 
 
+" Ctrl-Space {{{
+
+nnoremap <silent><Leader><Leader>p :CtrlSpace<CR>
+nnoremap <silent><Leader>p :CtrlSpace O<CR>
+nnoremap <silent><Leader>b :CtrlSpace b<CR>
+let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+let g:airline_exclude_preview = 1
+if executable('ag')
+    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+endif
+
+" }}}
+
+
 " Unite {{{
 
 call unite#filters#matcher_default#use(['matcher_fuzzy'])
@@ -984,9 +941,9 @@ endif
 let g:junkfile#directory=expand($HOME."/.nvim/tmp/junk")
 
 " files
-nnoremap <silent><Leader>p :Unite -silent -start-insert file_mru file_rec/async<CR>
+"nnoremap <silent><Leader>p :Unite -silent -start-insert file_mru file_rec/async<CR>
 " buffers
-nnoremap <silent><Leader>b :Unite -silent buffer<CR>
+"nnoremap <silent><Leader>b :Unite -silent buffer<CR>
 " tabs
 nnoremap <silent><Leader>B :Unite -silent tab<CR>
 " buffer search
@@ -1021,7 +978,7 @@ set si " smartindent (local to buffer)
 
 
 " Scrollbars ******************************************************************
-set sidescrolloff=5
+set sidescrolloff=10
 set numberwidth=4
 
 
