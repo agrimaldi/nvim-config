@@ -15,18 +15,18 @@
 " |   :call Tabstyle_tabs = set tab to real tabs                              |
 " |   :call Tabstyle_spaces = set tab to 2 spaces                             |
 " |                                                                           |
-" | Put machine/user specific settings in ~/.nvimrc.local                      |
+" | Put machine/user specific settings in ~/.config/nvimrc.local                      |
 " -----------------------------------------------------------------------------
 
 if has('vim_starting')
     set nocompatible
-    set runtimepath+=~/.nvim/bundle/neobundle.vim/
+    set runtimepath+=~/.config/nvim/bundle/neobundle.vim/
     filetype off
 endif
 
 filetype off
 
-call neobundle#begin(expand('~/.nvim/bundle/'))
+call neobundle#begin(expand('~/.config/nvim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'Shougo/vimproc.vim', {
@@ -73,7 +73,6 @@ NeoBundle 'kopischke/unite-spell-suggest'
 " -----------------------------------
 "NeoBundle 'pangloss/vim-javascript'
 "NeoBundle 'kelan/gyp.vim'
-"NeoBundle 'vim-scripts/Vim-R-plugin'
 "NeoBundle 'fatih/vim-go'
 "NeoBundle 'vim-scripts/plist.vim'
 "let vimrplugin_screenplugin = 0
@@ -152,6 +151,8 @@ NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
 NeoBundleLazy 'vim-scripts/loremipsum', { 'autoload' :{ 'commands' : 'Loremipsum'}}
 " reveals all the character info, Unicode included
 NeoBundle 'tpope/vim-characterize'
+" marks admin
+NeoBundle 'kshenoy/vim-signature'
 " Restore views
 NeoBundle 'vim-scripts/restore_view.vim'
 " Dash bindings
@@ -159,6 +160,12 @@ NeoBundle 'rizzatti/dash.vim'
 
 " }}}
 
+
+" R {{{
+
+NeoBundle 'vim-scripts/Vim-R-plugin'
+
+" }}}
 
 " Python {{{
 
@@ -178,19 +185,15 @@ NeoBundleLazy 'alfredodeza/coveragepy.vim', {'autoload': {'filetypes': ['python'
 " Julia {{{
 
 NeoBundle 'JuliaLang/julia-vim'
+NeoBundle 'benekastah/neomake'
+NeoBundle 'zyedidia/julialint.vim'
 
 " }}}
 
-" Tags {{{
-
-" Guntentags
-"NeoBundleLazy 'ludovicchabant/vim-gutentags', {'autoload': {'filetypes': ['vim', 'c', 'cpp']}}
-
-" }}}
 
 " Smart visual mode {{{
 
-"NeoBundle 'terryma/vim-expand-region'
+NeoBundle 'terryma/vim-expand-region'
 
 " }}}
 
@@ -222,6 +225,12 @@ NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :{'commands' : 'ZoomWinT
 NeoBundle 'jimsei/winresizer'
 " Window and workspace management
 NeoBundle 'szw/vim-ctrlspace'
+" NerdTree
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'Xuyuanp/nerdtree-git-plugin'
+" FZF integration
+set rtp+=/usr/local/opt/fzf
+NeoBundle 'junegunn/fzf.vim'
 
 " }}}
 
@@ -365,7 +374,7 @@ endfunction
 
 " Views {{{
 
-set viewdir=$HOME/.nvim/views/
+set viewdir=$HOME/.config/nvim/views/
 silent! call MakeDirIfNoExists(&viewdir)
 set viewoptions=cursor,folds,slash,unix
 
@@ -376,10 +385,10 @@ set viewoptions=cursor,folds,slash,unix
 
 set backup
 set noswapfile
-set backupdir=$HOME/.nvim/tmp/backup/
-set undodir=$HOME/.nvim/tmp/undo/
-set directory=$HOME/.nvim/tmp/swap/
-set viminfo+=n$HOME/.nvim/tmp/viminfo
+set backupdir=$HOME/.config/nvim/tmp/backup/
+set undodir=$HOME/.config/nvim/tmp/undo/
+set directory=$HOME/.config/nvim/tmp/swap/
+set viminfo+=n$HOME/.config/nvim/tmp/viminfo
 
 " make this dirs if no exists previously
 silent! call MakeDirIfNoExists(&undodir)
@@ -707,6 +716,13 @@ nnoremap <Leader>t :TagbarToggle<CR>
 " }}}
 
 
+" NerdTree {{{
+
+nnoremap <Leader>r :NERDTreeToggle<CR>
+
+" }}}
+
+
 " indentLine {{{
 
 map <silent> <Leader>L :IndentLinesToggle<CR>
@@ -719,6 +735,8 @@ let g:indentLine_color_term = 239
 
 " Expanding region selection {{{
 
+"vmap o <Plug>(expand_region_expand)
+"vmap <S-o> <Plug>(expand_region_shrink)
 let g:expand_region_text_objects = {
       \ 'iw'  :0,
       \ 'iW'  :0,
@@ -745,6 +763,14 @@ let g:instant_markdown_autostart = 0
 " Dash {{{
 
 nmap - <Plug>DashSearch
+
+" }}}
+
+
+" R {{{
+
+let vimrplugin_applescript = 0
+let vimrplugin_screenplugin = 0
 
 " }}}
 
@@ -782,7 +808,7 @@ let g:neocomplete#enable_refresh_always = 1
 let g:neocomplete#max_list = 30
 let g:neocomplete#min_keyword_length = 3
 let g:neocomplete#sources#syntax#min_keyword_length = 3
-let g:neocomplete#data_directory = $HOME.'/.nvim/tmp/neocomplete'
+let g:neocomplete#data_directory = $HOME.'/.config/nvim/tmp/neocomplete'
 
 " disable the auto select feature by default to speed up writing without
 " obstacles (is optimal for certain situations)
@@ -814,6 +840,7 @@ autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType c set omnifunc=ccomplete#Complete
 autocmd FileType julia setlocal omnifunc=LaTeXtoUnicode#omnifunc
+autocmd FileType r setlocal omnifunc=rcomplete#CompleteR
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
     let g:neocomplete#sources#omni#input_patterns = {}
@@ -826,15 +853,15 @@ let g:neocomplete#sources#omni#input_patterns.python='[^. \t]\.\w*'
 
 " Neobundle {{{
 
-let g:neobundle#log_filename = $HOME.'/.nvim/tmp/neobundle.log'
+let g:neobundle#log_filename = $HOME.'/.config/nvim/tmp/neobundle.log'
 
 " }}}
 
 
 " neomru {{{
 
-let g:neomru#file_mru_path = $HOME.'/.nvim/tmp/neomru/file'
-let g:neomru#directory_mru_path = $HOME.'/.nvim/tmp/neomru/directory'
+let g:neomru#file_mru_path = $HOME.'/.config/nvim/tmp/neomru/file'
+let g:neomru#directory_mru_path = $HOME.'/.config/nvim/tmp/neomru/directory'
 
 " }}}
 
@@ -879,13 +906,21 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Ctrl-Space {{{
 
 nnoremap <silent><Leader><Leader>p :CtrlSpace<CR>
-nnoremap <silent><Leader>p :CtrlSpace O<CR>
-nnoremap <silent><Leader>b :CtrlSpace b<CR>
+"nnoremap <silent><Leader>p :CtrlSpace O<CR>
+"nnoremap <silent><Leader>b :CtrlSpace b<CR>
 let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
 let g:airline_exclude_preview = 1
 if executable('ag')
     let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
 endif
+
+" }}}
+
+
+" FZF {{{
+
+nnoremap <silent><Leader>p :Files<CR>
+nnoremap <silent><Leader>b :Buffers<CR>
 
 " }}}
 
@@ -921,7 +956,7 @@ let g:unite_marked_icon = '✓'
 let g:unite_winheight = 15
 let g:unite_update_time = 200
 let g:unite_split_rule = 'botright'
-let g:unite_data_directory = $HOME.'/.nvim/tmp/unite'
+let g:unite_data_directory = $HOME.'/.config/nvim/tmp/unite'
 let g:unite_source_buffer_time_format = '(%d-%m-%Y %H:%M:%S) '
 let g:unite_source_file_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
 let g:unite_source_directory_mru_time_format = '(%d-%m-%Y %H:%M:%S) '
@@ -938,7 +973,7 @@ elseif executable('ack')
     let g:unite_source_grep_search_word_highlight = 1
 endif
 
-let g:junkfile#directory=expand($HOME."/.nvim/tmp/junk")
+let g:junkfile#directory=expand($HOME."/.config/nvim/tmp/junk")
 
 " files
 "nnoremap <silent><Leader>p :Unite -silent -start-insert file_mru file_rec/async<CR>
@@ -948,7 +983,7 @@ let g:junkfile#directory=expand($HOME."/.nvim/tmp/junk")
 nnoremap <silent><Leader>B :Unite -silent tab<CR>
 " buffer search
 nnoremap <silent><Leader>f :Unite -silent -no-split -start-insert -auto-preview line<CR>
-nnoremap <silent>[menu]8 :UniteWithCursorWord -silent -no-split -auto-preview line<CR>
+nnoremap <silent><Leader>fw :UniteWithCursorWord -silent -no-split -auto-preview line<CR>
 " yankring
 nnoremap <silent><Leader>y :Unite -silent history/yank<CR>
 " grep
@@ -959,11 +994,9 @@ nnoremap <silent><Leader>aw :UniteWithCursorWord -silent -auto-preview -auto-hig
 "nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>
 " tasks
 nnoremap <silent><Leader>; :Unite -silent -toggle grep:%::FIXME\|TODO\|NOTE\|XXX\|COMBAK\|@todo<CR>
-" junk files
-nnoremap <silent><Leader>d :Unite -silent junkfile/new junkfile<CR>
 
 " menu
-so ~/.nvim/unite-menu-config.vim
+so ~/.config/nvim/unite-menu-config.vim
 
 " }}}
 
@@ -1029,8 +1062,8 @@ endif
 " -----------------------------------------------------------------------------
 " |                               Host specific                               |
 " -----------------------------------------------------------------------------
-if filereadable(expand("~/.nvimrc.local"))
-  source ~/.nvimrc.local
+if filereadable(expand("~/.config/nvimrc.local"))
+  source ~/.config/nvimrc.local
 endif
 
 
