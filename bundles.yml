@@ -62,93 +62,91 @@
             - rst
 # }}}
 
-majutsushi/tagbar:
-Lokaltog/vim-easymotion:
-terryma/vim-multiple-cursors:
-rking/ag.vim:
-delimitMate.vim:
-tpope/vim-speeddating:
-tpope/vim-surround:
-tpope/vim-repeat:
-scrooloose/nerdcommenter:
-sjl/gundo.vim:
+- majutsushi/tagbar:
+- Lokaltog/vim-easymotion:
+- terryma/vim-multiple-cursors:
+- rking/ag.vim:
+- delimitMate.vim:
+- tpope/vim-speeddating:
+- tpope/vim-surround:
+- tpope/vim-repeat:
+- scrooloose/nerdcommenter:
+- sjl/gundo.vim:
     lazy: 1
     autoload:
         commands:
             - GundoToggle
-vim-scripts/loremipsum:
+- vim-scripts/loremipsum:
     lazy: 1
     autoload:
         commands:
             - Loremipsum
-tpope/vim-characterize:
-kshenoy/vim-signature:
-vim-scripts/restore_view.vim:
-rizzatti/dash.vim:
+- tpope/vim-characterize:
+- kshenoy/vim-signature:
+- vim-scripts/restore_view.vim:
+- rizzatti/dash.vim:
 
-
-vim-scripts/Vim-R-plugin:
+- vim-scripts/Vim-R-plugin:
     lazy: 1
     autoload:
         filetypes:
             - r
 
-davidhalter/jedi-vim:
+- davidhalter/jedi-vim:
     lazy: 1
     autoload:
         filetypes:
             - python
-klen/python-mode:
+- klen/python-mode:
     lazy: 1
     autoload:
         filetypes:
             - python
-Yggdroot/indentLine:
+- Yggdroot/indentLine:
     lazy: 1
     autoload:
         filetypes:
             - python
-alfredodeza/coveragepy.vim:
+- alfredodeza/coveragepy.vim:
     lazy: 1
     autoload:
         filetypes:
             - python
 
+- JuliaLang/julia-vim:
+- benekastah/neomake:
+- zyedidia/julialint.vim:
 
-JuliaLang/julia-vim:
-benekastah/neomake:
-zyedidia/julialint.vim:
-
-terryma/vim-expand-region:
-SirVer/ultisnips:
+- terryma/vim-expand-region:
+- SirVer/ultisnips:
 #"NeoBundle 'honza/vim-snippets'
 
-elzr/vim-json:
+- elzr/vim-json:
     lazy: 1
     autoload:
         filetypes:
             - json
-scrooloose/syntastic:
+- scrooloose/syntastic:
 
-ryanoasis/vim-devicons:
-bling/vim-airline:
-vim-scripts/zoomwintab.vim:
+- ryanoasis/vim-devicons:
+- bling/vim-airline:
+- vim-scripts/zoomwintab.vim:
     lazy: 1
     autoload:
         commands:
             - ZoomWinTabToggle
-szw/vim-ctrlspace:
-scrooloose/nerdtree:
+- szw/vim-ctrlspace:
+- scrooloose/nerdtree:
     lazy: 1
     autoload:
         commands:
             - NERDTreeToggle
-Xuyuanp/nerdtree-git-plugin:
+- Xuyuanp/nerdtree-git-plugin:
     lazy: 1
     autoload:
         commands:
             - NERDTreeToggle
-junegunn/fzf.vim:
+- junegunn/fzf.vim:
 
 - LaTeX-Box-Team/LaTeX-Box:
     lazy: 1

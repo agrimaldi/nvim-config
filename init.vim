@@ -29,6 +29,20 @@ filetype off
 call neobundle#begin(expand('~/.config/nvim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
+function! g:yaml_load(filename)
+    python << EOF
+    import yaml
+    import os.path
+    obj = yaml.load(os.path.abspath(os.path.expanduser(vim.eval('a:filename'))))
+    print vim.eval
+    EOF
+endfunction
+    "obj_hash = obj.inspect.gsub('=>', ':').gsub('nil', '{}')
+    "VIM::command("let l:ret = #{obj_hash}")
+    "return l:ret
+
+let s:my_bundles = g:yaml_load('~/.config/nvim/bundles.yml')
+
 " Shougo's way {{{
 
 " Unite sources
