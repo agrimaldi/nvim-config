@@ -29,34 +29,13 @@ filetype off
 call neobundle#begin(expand('~/.config/nvim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-
 " Shougo's way {{{
 
-NeoBundle 'Shougo/unite.vim'
 " Unite sources
-NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
-NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources':'colorscheme'}}
-NeoBundleLazy 'ujihisa/unite-locate', {'autoload':{'unite_sources':'locate'}}
-NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources':['history/command', 'history/search']}}
-NeoBundleLazy 'osyo-manga/unite-filetype', { 'autoload' : {'unite_sources':'filetype', }}
-NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources':['quickfix', 'location_list']}}
-NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
-NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
-NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':['file_mru', 'directory_mru']}}
+"NeoBundleLazy 'ujihisa/unite-locate', {'autoload':{'unite_sources':'locate'}}
+"NeoBundleLazy 'osyo-manga/unite-filetype', { 'autoload' : {'unite_sources':'filetype', }}
+"NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
 " File explorer (needed where ranger is not available)
-NeoBundleLazy 'Shougo/vimfiler', {'autoload' : { 'commands' : ['VimFiler']}}
-" Unite plugin that provides command line completition
-NeoBundle 'majkinetor/unite-cmdmatch'
-" Unite plugin that provides spell suggestions
-NeoBundle 'kopischke/unite-spell-suggest'
 
 " }}}
 
@@ -86,159 +65,12 @@ NeoBundle 'kopischke/unite-spell-suggest'
 
 
 " ::::::::::::   SuperTab   ::::::::::::::
-NeoBundle 'ervandew/supertab'
 let g:SuperTabDefaultCompletionType = 'context'
 let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
 
-
-" Git {{{
-
-NeoBundle 'tpope/vim-fugitive', {'augroup': 'fugitive'}
-" Git gutter
-NeoBundle 'airblade/vim-gitgutter'
-" Merginal
-NeoBundle 'idanarye/vim-merginal', {'depends':['tpope/vim-fugitive']}
-" Git viewer
-NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}}
-" }}}
-
-
-" Markdown & reStructuredText {{{
-
-" Markdown Syntax
-NeoBundle 'joedicastro/vim-markdown'
-" Makes a Markdown Extra preview into the browser
-NeoBundle 'suan/vim-instant-markdown'
-" reStructuredText in vim. Your personal Wiki in RST
-NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}
-
-" }}}
-
-
-" Linux tools {{{
-
-" A diff tool for directories
-NeoBundleLazy 'joedicastro/DirDiff.vim', { 'autoload': { 'commands' : 'DirDiff'}}
-
-" }}}
-
-
-" Text edition {{{
-
-" Floobits (Collaborative edition)
-"NeoBundle 'floobits/floobits-neovim'
-" TagBar
-NeoBundle 'majutsushi/tagbar'
-" easy motion
-NeoBundle 'Lokaltog/vim-easymotion'
-" multiple curosors
-NeoBundle 'terryma/vim-multiple-cursors'
-" the silver searcher
-NeoBundle 'rking/ag.vim'
-" Autocompletion of (, [, {, ', ", ...
-NeoBundle 'delimitMate.vim'
-" Smart and fast date changer
-NeoBundle 'tpope/vim-speeddating'
-" to surround vim objects with a pair of identical chars
-NeoBundle 'tpope/vim-surround'
-" extend repetitions by the 'dot' key
-NeoBundle 'tpope/vim-repeat'
-" toggle comments
-NeoBundle 'scrooloose/nerdcommenter'
-" browse the vim undo tree
-NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
-" to insert lorem ipsum blocks
-NeoBundleLazy 'vim-scripts/loremipsum', { 'autoload' :{ 'commands' : 'Loremipsum'}}
-" reveals all the character info, Unicode included
-NeoBundle 'tpope/vim-characterize'
-" marks admin
-NeoBundle 'kshenoy/vim-signature'
-" Restore views
-NeoBundle 'vim-scripts/restore_view.vim'
-" Dash bindings
-NeoBundle 'rizzatti/dash.vim'
-
-" }}}
-
-
-" R {{{
-
-NeoBundle 'vim-scripts/Vim-R-plugin'
-
-" }}}
-
-" Python {{{
-
-" Autocompletion
-"NeoBundle 'Shougo/neocomplete.vim'
-" A Python plugin
-NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes': ['python']}}
-NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
-" Show indent lines
-NeoBundleLazy 'Yggdroot/indentLine', {'autoload': {'filetypes': ['python']}}
-" Show reports from coverage.py
-NeoBundleLazy 'alfredodeza/coveragepy.vim', {'autoload': {'filetypes': ['python']}}
-
-" }}}
-"
-"
-" Julia {{{
-
-NeoBundle 'JuliaLang/julia-vim'
-NeoBundle 'benekastah/neomake'
-NeoBundle 'zyedidia/julialint.vim'
-
-" }}}
-
-
-" Smart visual mode {{{
-
-NeoBundle 'terryma/vim-expand-region'
-
-" }}}
-
-" Code Snippets {{{
-
-" Powerful and advanced Snippets tool
-NeoBundle 'SirVer/ultisnips'
-" Snippets for Ultisnips
-"NeoBundle 'honza/vim-snippets'
-
-" }}}
-
-
-" Syntax {{{
-
-NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
-NeoBundle 'scrooloose/syntastic'
-
-" }}}
-
-
-" GUI {{{
-
-" UTF-8 icons in nerdtree
-NeoBundle 'ryanoasis/vim-devicons'
-" A better looking status line
-NeoBundle 'bling/vim-airline'
-" Zooms a window
-NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :{'commands' : 'ZoomWinTabToggle'}}
-" easily window resizing
-NeoBundle 'jimsei/winresizer'
-" Window and workspace management
-NeoBundle 'szw/vim-ctrlspace'
-" NerdTree
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'Xuyuanp/nerdtree-git-plugin'
-" FZF integration
 set rtp+=/usr/local/opt/fzf
-NeoBundle 'junegunn/fzf.vim'
-
-" }}}
-
 
 " ::::::::::::   AutomaticLatexPlugin   :::::::::::::::
-NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
 let g:LatexBox_latexmk_options = '-pvc -bibtex'
 let g:LatexBox_viewer = '/Applications/Skim.app/Contents/MacOS/Skim'
 let g:LatexBox_output_type = 'pdf'

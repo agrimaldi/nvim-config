@@ -1,0 +1,157 @@
+- Shougo/vimproc:
+    build:
+        mac: make -f make_mac.mak
+        unix: make -f make_unix.mak
+
+- ervandew/supertab:
+- morhetz/gruvbox:
+
+# Unite {{{
+- Shougo/unite.vim:
+- Shougo/neomru.vim:
+- majkinetor/unite-cmdmatch:
+- kopischke/unite-spell-suggest:
+- tsukkee/unite-help:
+    lazy: 1
+    autoload:
+        unite_sources:
+            - help
+- thinca/vim-unite-history:
+    lazy: 1
+    autoload:
+        unite_sources:
+            - history/command
+            - history/search
+            - history/yank
+- tacroe/unite-mark:
+    lazy: 1
+    autoload:
+        unite_sources:
+            - mark
+
+# }}}
+
+# Git {{{
+
+- tpope/vim-fugitive:
+- airblade/vim-gitgutter:
+- idanarye/vim-merginal:
+- gregsexton/gitv:
+    lazy: 1
+    autoload:
+        commands:
+            - Gitv
+# }}}
+
+# Markdown and restructured text {{{
+
+- joedicastro/vim-markdown:
+    lazy: 1
+    autoload:
+        filetypes:
+            - markdown
+- suan/vim-instant-markdown:
+    lazy: 1
+    autoload:
+        filetypes:
+            - markdown
+- Rykka/riv.vim:
+    lazy: 1
+    autoload:
+        filetypes:
+            - rst
+# }}}
+
+majutsushi/tagbar:
+Lokaltog/vim-easymotion:
+terryma/vim-multiple-cursors:
+rking/ag.vim:
+delimitMate.vim:
+tpope/vim-speeddating:
+tpope/vim-surround:
+tpope/vim-repeat:
+scrooloose/nerdcommenter:
+sjl/gundo.vim:
+    lazy: 1
+    autoload:
+        commands:
+            - GundoToggle
+vim-scripts/loremipsum:
+    lazy: 1
+    autoload:
+        commands:
+            - Loremipsum
+tpope/vim-characterize:
+kshenoy/vim-signature:
+vim-scripts/restore_view.vim:
+rizzatti/dash.vim:
+
+
+vim-scripts/Vim-R-plugin:
+    lazy: 1
+    autoload:
+        filetypes:
+            - r
+
+davidhalter/jedi-vim:
+    lazy: 1
+    autoload:
+        filetypes:
+            - python
+klen/python-mode:
+    lazy: 1
+    autoload:
+        filetypes:
+            - python
+Yggdroot/indentLine:
+    lazy: 1
+    autoload:
+        filetypes:
+            - python
+alfredodeza/coveragepy.vim:
+    lazy: 1
+    autoload:
+        filetypes:
+            - python
+
+
+JuliaLang/julia-vim:
+benekastah/neomake:
+zyedidia/julialint.vim:
+
+terryma/vim-expand-region:
+SirVer/ultisnips:
+#"NeoBundle 'honza/vim-snippets'
+
+elzr/vim-json:
+    lazy: 1
+    autoload:
+        filetypes:
+            - json
+scrooloose/syntastic:
+
+ryanoasis/vim-devicons:
+bling/vim-airline:
+vim-scripts/zoomwintab.vim:
+    lazy: 1
+    autoload:
+        commands:
+            - ZoomWinTabToggle
+szw/vim-ctrlspace:
+scrooloose/nerdtree:
+    lazy: 1
+    autoload:
+        commands:
+            - NERDTreeToggle
+Xuyuanp/nerdtree-git-plugin:
+    lazy: 1
+    autoload:
+        commands:
+            - NERDTreeToggle
+junegunn/fzf.vim:
+
+- LaTeX-Box-Team/LaTeX-Box:
+    lazy: 1
+    autoload:
+        filetypes:
+            - tex
