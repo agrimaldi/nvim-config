@@ -217,6 +217,8 @@ NeoBundle 'scrooloose/syntastic'
 
 " GUI {{{
 
+" UTF-8 icons in nerdtree
+NeoBundle 'ryanoasis/vim-devicons'
 " A better looking status line
 NeoBundle 'bling/vim-airline'
 " Zooms a window
