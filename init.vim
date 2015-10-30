@@ -679,6 +679,7 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 nnoremap <silent> <Leader>p :Files<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>m :History<CR>
+nnoremap <silent> <Leader>f :Ag<CR>
 
 " }}}
 
@@ -740,7 +741,7 @@ let g:junkfile#directory=expand($HOME."/.config/nvim/tmp/junk")
 " tabs
 nnoremap <silent> <Leader>B :Unite -silent tab<CR>
 " buffer search
-nnoremap <silent> <Leader>f :Unite -silent -no-split -start-insert -auto-preview line<CR>
+"nnoremap <silent> <Leader>f :Unite -silent -no-split -start-insert -auto-preview line<CR>
 nnoremap <silent> <Leader>fw :UniteWithCursorWord -silent -no-split -auto-preview line<CR>
 " yankring
 nnoremap <silent> <Leader>y :Unite -silent history/yank<CR>
