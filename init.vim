@@ -145,9 +145,9 @@ endfunction
 
 " Views {{{
 
-set viewdir=$HOME/.config/nvim/views/
-silent! call MakeDirIfNoExists(&viewdir)
+set viewdir=$HOME/.config/nvim/tmp/views/
 set viewoptions=cursor,folds,slash,unix
+silent! call MakeDirIfNoExists(&viewdir)
 
 " }}}
 
@@ -644,8 +644,11 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Sessions / startify {{{
 
-let g:startify_session_dir = '~/.config/nvim/sessions'
+nnoremap <F5> :mksession<CR>
+let g:startify_session_dir = '~/.config/nvim/tmp/sessions'
 let g:startify_session_persistence = 1
+let g:startify_session_autoload = 1
+silent! call MakeDirIfNoExists('~/.config/nvim/tmp/sessions')
 
 " }}}
 

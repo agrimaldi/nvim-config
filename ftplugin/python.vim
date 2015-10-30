@@ -9,7 +9,7 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#use_tabs_not_buffers = 0
 
 " Install current package
-autocmd FileType python map <buffer> <silent> <F5> :Silent pip install --upgrade --no-deps .<CR>
+map <buffer> <silent> <F2> :Silent pip install --upgrade --no-deps .<CR>
 
 let g:pymode_breakpoint_bind = '<F6>'
 
