@@ -18,230 +18,17 @@
 " | Put machine/user specific settings in ~/.config/nvimrc.local                      |
 " -----------------------------------------------------------------------------
 
-
 set nocompatible
-call plug#begin('~/.config/nvim/plugged')
 
-" Shougo's way {{{
-
-Plug 'Shougo/unite.vim'
-" Unite sources
-Plug 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
-Plug 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources':'colorscheme'}}
-Plug 'ujihisa/unite-locate', {'autoload':{'unite_sources':'locate'}}
-Plug 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources':['history/command', 'history/search']}}
-Plug 'osyo-manga/unite-filetype', { 'autoload' : {'unite_sources':'filetype', }}
-Plug 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources':['quickfix', 'location_list']}}
-Plug 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
-Plug 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
-Plug 'Shougo/neomru.vim', {'autoload':{'unite_sources':['file_mru', 'directory_mru']}}
-" File explorer (needed where ranger is not available)
-Plug 'Shougo/vimfiler', {'autoload' : { 'commands' : ['VimFiler']}}
-" Unite plugin that provides command line completition
-Plug 'majkinetor/unite-cmdmatch'
-" Unite plugin that provides spell suggestions
-Plug 'kopischke/unite-spell-suggest'
-
-" }}}
-
-
-" ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-" :::                                                    :::
-" :::                      Bundles                       :::
-" :::                                                    :::
-" ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-"
-" -----------------------------------
-" |       File types support        |
-" -----------------------------------
-"Plug 'pangloss/vim-javascript'
-"Plug 'kelan/gyp.vim'
-"Plug 'fatih/vim-go'
-"Plug 'vim-scripts/plist.vim'
-"let vimrplugin_screenplugin = 0
-"let vimrplugin_assign = 0
-
-
-" -----------------------------------
-" |              Plug-ins           |
-" -----------------------------------
-"
-
-
-" ::::::::::::   SuperTab   ::::::::::::::
-Plug 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
-
-
-" Git {{{
-
-Plug 'tpope/vim-fugitive', {'augroup': 'fugitive'}
-" Git gutter
-Plug 'airblade/vim-gitgutter'
-" Merginal
-Plug 'idanarye/vim-merginal', {'depends':['tpope/vim-fugitive']}
-" Git viewer
-Plug 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}}
-" }}}
-
-
-" Markdown & reStructuredText {{{
-
-" Markdown Syntax
-Plug 'joedicastro/vim-markdown', {'for': 'markdown'}
-" Makes a Markdown Extra preview into the browser
-Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
-" reStructuredText in vim. Your personal Wiki in RST
-Plug 'Rykka/riv.vim', {'for': 'rst'}
-
-" }}}
-
-
-" Linux tools {{{
-
-" A diff tool for directories
-Plug 'joedicastro/DirDiff.vim', { 'on' : 'DirDiff'}
-
-" }}}
-
-
-" Text edition {{{
-
-" Floobits (Collaborative edition)
-"Plug 'floobits/floobits-neovim'
-" TagBar
-Plug 'majutsushi/tagbar'
-" easy motion
-Plug 'Lokaltog/vim-easymotion'
-" multiple curosors
-Plug 'terryma/vim-multiple-cursors'
-" the silver searcher
-Plug 'rking/ag.vim'
-" Autocompletion of (, [, {, ', ", ...
-Plug 'delimitMate.vim'
-" Smart and fast date changer
-Plug 'tpope/vim-speeddating'
-" to surround vim objects with a pair of identical chars
-Plug 'tpope/vim-surround'
-" extend repetitions by the 'dot' key
-Plug 'tpope/vim-repeat'
-" toggle comments
-Plug 'scrooloose/nerdcommenter'
-" browse the vim undo tree
-Plug 'sjl/gundo.vim', {'on': 'GundoToggle'}
-" to insert lorem ipsum blocks
-Plug 'vim-scripts/loremipsum', { 'autoload' :{ 'commands' : 'Loremipsum'}}
-" reveals all the character info, Unicode included
-Plug 'tpope/vim-characterize'
-" marks admin
-Plug 'kshenoy/vim-signature'
-" Restore views
-Plug 'vim-scripts/restore_view.vim'
-" Dash bindings
-Plug 'rizzatti/dash.vim'
-
-" }}}
-
-
-" R {{{
-
-Plug 'vim-scripts/Vim-R-plugin', {'for': 'r'}
-
-" }}}
-
-" Python {{{
-
-" Autocompletion
-"Plug 'Shougo/neocomplete.vim'
-" A Python plugin
-Plug 'davidhalter/jedi-vim', {'for': 'python'}
-Plug 'klen/python-mode', {'for': 'python'}
-" Show indent lines
-Plug 'Yggdroot/indentLine', {'for': 'python'}
-" Show reports from coverage.py
-Plug 'alfredodeza/coveragepy.vim', {'for': 'python'}
-
-" }}}
-"
-"
-" Julia {{{
-
-Plug 'JuliaLang/julia-vim'
-Plug 'benekastah/neomake', {'for': 'julia'}
-Plug 'zyedidia/julialint.vim', {'for': 'julia'}
-
-" }}}
-
-
-" Smart visual mode {{{
-
-Plug 'terryma/vim-expand-region'
-
-" }}}
-
-" Code Snippets {{{
-
-" Powerful and advanced Snippets tool
-Plug 'SirVer/ultisnips'
-" Snippets for Ultisnips
-Plug 'honza/vim-snippets'
-
-" }}}
-
-
-" Syntax {{{
-
-Plug 'elzr/vim-json', {'for' : 'json'}
-Plug 'scrooloose/syntastic'
-
-" }}}
-
-
-" GUI {{{
-
-" UTF-8 icons in nerdtree
-Plug 'ryanoasis/vim-devicons'
-" A better looking status line
-Plug 'bling/vim-airline'
-" Zooms a window
-Plug 'vim-scripts/zoomwintab.vim', {'autoload' :{'commands' : 'ZoomWinTabToggle'}}
-" easily window resizing
-Plug 'jimsei/winresizer'
-" Window and workspace management
-Plug 'szw/vim-ctrlspace'
-" NerdTree
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
-Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
-" FZF integration
-set rtp+=/usr/local/opt/fzf
-Plug 'junegunn/fzf.vim'
-
-" }}}
-
-
-" ::::::::::::   AutomaticLatexPlugin   :::::::::::::::
-Plug 'LaTeX-Box-Team/LaTeX-Box'
-let g:LatexBox_latexmk_options = '-pvc -bibtex'
-let g:LatexBox_viewer = '/Applications/Skim.app/Contents/MacOS/Skim'
-let g:LatexBox_output_type = 'pdf'
-let g:LatexBox_autojump = 1
-
-
-
-" -----------------------------------
-" |              Colors             |
-" -----------------------------------
-
-" Colorschemes {{{
-
-Plug 'morhetz/gruvbox'
-
-" }}}
-
-
-call plug#end()
+if has('vim_starting')
+    if !filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+    	call system("curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
+        source ~/.config/nvim/plugs.vim
+        PlugInstall
+    else 
+        source ~/.config/nvim/plugs.vim
+    endif
+endif
 
 
 " Color scheme {{{
@@ -252,13 +39,6 @@ syntax on
 colorscheme gruvbox
 set background=dark
 hi Normal ctermbg=NONE
-
-" }}}
-
-
-" Autoload configuration when this file changes ($MYVIMRC) {{{
-
-autocmd! BufWritePost vimrc source %
 
 " }}}
 
@@ -289,7 +69,6 @@ set backspace=indent,eol,start  " defines the backspace key behavior
 set matchpairs+=<:>
 set vb t_vb=                    " Turn off bell, this could be more annoying, but I'm not sure how
 set nofoldenable                " Turn off folding
-"nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " printing
 set pdev=pdf
 set printoptions=paper:A4,syntax:y,wrap:y,number:y
@@ -436,7 +215,7 @@ function! ToggleWrap()
     endif
 endfunction
 
-nmap <silent><Leader>ew :call ToggleWrap()<CR>
+nmap <silent> <Leader>ew :call ToggleWrap()<CR>
 
 " }}}
 
@@ -516,13 +295,6 @@ nnoremap <C-w><C-o> :ZoomWinTabToggle<CR>
 
 " }}}
 
-" Fast window & buffer close and kill {{{
-
-nnoremap <Leader>k <C-w>c
-nnoremap <silent><Leader>K :bd<CR>
-
-" }}}
-
 
 " Cut/Paste {{{
 
@@ -567,9 +339,10 @@ set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
 set nolist
 noremap <Leader>eh :set list!<CR>
 
+
 " Delete trailing whitespaces {{{
 
-nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nmap <silent> <Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " }}}
 
@@ -607,6 +380,14 @@ augroup END
 
 
 " PLUGINS Setup {{{ ===========================================================
+
+" Supertab {{{
+
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
+
+" }}}
+
 
 " Airline {{{
 
@@ -720,8 +501,6 @@ let g:indentLine_color_term = 239
 
 " Expanding region selection {{{
 
-"vmap o <Plug>(expand_region_expand)
-"vmap <S-o> <Plug>(expand_region_shrink)
 let g:expand_region_text_objects = {
       \ 'iw'  :0,
       \ 'iW'  :0,
@@ -774,7 +553,7 @@ let g:jedi#use_tabs_not_buffers = 0
 
 
 " Install current package
-nmap <silent><F5> :Silent /usr/local/anaconda3/bin/pip install --upgrade .<CR>
+autocmd FileType python map <buffer> <silent> <F5> :Silent pip install --upgrade --no-deps .<CR>
 
 let g:pymode_breakpoint_bind = '<F6>'
 
@@ -812,18 +591,18 @@ function! ToggleNeoComplete()
       let g:neocomplete#enable_auto_select = 1
   endif
 endfunction
-nnoremap <silent><Leader>ea :call ToggleNeoComplete()<CR>
+nnoremap <silent> <Leader>ea :call ToggleNeoComplete()<CR>
 
 " Enable omni completion.
 :set completeopt=longest,menuone
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType c setlocal omnifunc=ccomplete#Complete
 autocmd FileType julia setlocal omnifunc=LaTeXtoUnicode#omnifunc
 autocmd FileType r setlocal omnifunc=rcomplete#CompleteR
 
@@ -832,13 +611,6 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 
 let g:neocomplete#sources#omni#input_patterns.python='[^. \t]\.\w*'
-
-" }}}
-
-
-" Neobundle {{{
-
-let g:neobundle#log_filename = $HOME.'/.config/nvim/tmp/neobundle.log'
 
 " }}}
 
@@ -853,7 +625,7 @@ let g:neomru#directory_mru_path = $HOME.'/.config/nvim/tmp/neomru/directory'
 
 " Syntastic {{{
 
-nmap <silent><Leader>N :SyntasticCheck<CR>:Errors<CR>
+nmap <silent> <Leader>N :SyntasticCheck<CR>:Errors<CR>
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -890,22 +662,23 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 
 " Ctrl-Space {{{
 
-nnoremap <silent><Leader><Leader>p :CtrlSpace<CR>
-"nnoremap <silent><Leader>p :CtrlSpace O<CR>
-"nnoremap <silent><Leader>b :CtrlSpace b<CR>
-let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
-let g:airline_exclude_preview = 1
-if executable('ag')
-    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-endif
+"nnoremap <silent> <Leader><Leader>p :CtrlSpace<CR>
+"nnoremap <silent> <Leader>p :CtrlSpace O<CR>
+"nnoremap <silent> <Leader>b :CtrlSpace b<CR>
+"let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
+"let g:airline_exclude_preview = 1
+"if executable('ag')
+    "let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
+"endif
 
 " }}}
 
 
 " FZF {{{
 
-nnoremap <silent><Leader>p :Files<CR>
-nnoremap <silent><Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>p :Files<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>m :History<CR>
 
 " }}}
 
@@ -961,24 +734,24 @@ endif
 let g:junkfile#directory=expand($HOME."/.config/nvim/tmp/junk")
 
 " files
-"nnoremap <silent><Leader>p :Unite -silent -start-insert file_mru file_rec/async<CR>
+"nnoremap <silent> <Leader>p :Unite -silent -start-insert file_mru file_rec/async<CR>
 " buffers
-"nnoremap <silent><Leader>b :Unite -silent buffer<CR>
+"nnoremap <silent> <Leader>b :Unite -silent buffer<CR>
 " tabs
-nnoremap <silent><Leader>B :Unite -silent tab<CR>
+nnoremap <silent> <Leader>B :Unite -silent tab<CR>
 " buffer search
-nnoremap <silent><Leader>f :Unite -silent -no-split -start-insert -auto-preview line<CR>
-nnoremap <silent><Leader>fw :UniteWithCursorWord -silent -no-split -auto-preview line<CR>
+nnoremap <silent> <Leader>f :Unite -silent -no-split -start-insert -auto-preview line<CR>
+nnoremap <silent> <Leader>fw :UniteWithCursorWord -silent -no-split -auto-preview line<CR>
 " yankring
-nnoremap <silent><Leader>y :Unite -silent history/yank<CR>
+nnoremap <silent> <Leader>y :Unite -silent history/yank<CR>
 " grep
-nnoremap <silent><Leader>a :Unite -silent -auto-preview -auto-highlight -no-split grep:.<CR>
+nnoremap <silent> <Leader>a :Unite -silent -auto-preview -auto-highlight -no-split grep:.<CR>
 " se(a)rch (w)ord in current directory
-nnoremap <silent><Leader>aw :UniteWithCursorWord -silent -auto-preview -auto-highlight -no-split grep:.<CR>
+nnoremap <silent> <Leader>aw :UniteWithCursorWord -silent -auto-preview -auto-highlight -no-split grep:.<CR>
 " help
 "nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>
 " tasks
-nnoremap <silent><Leader>; :Unite -silent -toggle grep:%::FIXME\|TODO\|NOTE\|XXX\|COMBAK\|@todo<CR>
+nnoremap <silent> <Leader>; :Unite -silent -toggle grep:%::FIXME\|TODO\|NOTE\|XXX\|COMBAK\|@todo<CR>
 
 " menu
 so ~/.config/nvim/unite-menu-config.vim
