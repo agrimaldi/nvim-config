@@ -660,16 +660,10 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }}}
 
 
-" Ctrl-Space {{{
+" Sessions / startify {{{
 
-"nnoremap <silent> <Leader><Leader>p :CtrlSpace<CR>
-"nnoremap <silent> <Leader>p :CtrlSpace O<CR>
-"nnoremap <silent> <Leader>b :CtrlSpace b<CR>
-"let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
-"let g:airline_exclude_preview = 1
-"if executable('ag')
-    "let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-"endif
+let g:startify_session_dir = '~/.config/nvim/sessions'
+let g:startify_session_persistence = 1
 
 " }}}
 

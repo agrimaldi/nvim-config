@@ -87,8 +87,8 @@ Plug 'kshenoy/vim-signature'
 Plug 'vim-scripts/restore_view.vim'
 " Dash bindings
 Plug 'rizzatti/dash.vim'
-" Auto change root directory
-Plug 'airblade/vim-rooter'
+" Sessions
+Plug 'mhinz/vim-startify'
 
 " }}}
 
@@ -155,8 +155,6 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'bling/vim-airline'
 " Zooms a window
 Plug 'vim-scripts/zoomwintab.vim', {'on' : 'ZoomWinTabToggle'}
-" Window and workspace management
-"Plug 'szw/vim-ctrlspace'
 " NerdTree
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
