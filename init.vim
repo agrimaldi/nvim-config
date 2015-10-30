@@ -100,6 +100,13 @@ endfunc
 " }}}
 
 
+" Folding {{{
+
+nnoremap <Space> za
+
+" }}}
+
+
 " Searching {{{
 
 set hlsearch  " highlight search
@@ -741,12 +748,6 @@ set si " smartindent (local to buffer)
 " Scrollbars ******************************************************************
 set sidescrolloff=10
 set numberwidth=4
-
-
-
-" Sessions ********************************************************************
-" Sets what is saved when you save a session
-"set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 
 
 " Abbreviations

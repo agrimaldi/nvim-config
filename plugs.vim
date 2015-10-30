@@ -110,6 +110,8 @@ Plug 'klen/python-mode', {'for': 'python'}
 Plug 'Yggdroot/indentLine', {'for': 'python'}
 " Show reports from coverage.py
 Plug 'alfredodeza/coveragepy.vim', {'for': 'python'}
+" Folding
+Plug 'tmhedberg/SimpylFold'
 
 " }}}
 "
