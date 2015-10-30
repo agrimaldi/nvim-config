@@ -779,24 +779,10 @@ if has("unix")
 endif
 
 
-
-" -----------------------------------------------------------------------------
-" |                               Startup                                     |
-" -----------------------------------------------------------------------------
-" Open NERDTree on start
-" autocmd VimEnter * exe 'NERDTree' | wincmd l
-
-
-
 " -----------------------------------------------------------------------------
 " |                               Host specific                               |
 " -----------------------------------------------------------------------------
-if filereadable(expand("~/.config/nvimrc.local"))
-  source ~/.config/nvimrc.local
+if filereadable(expand("~/.config/nvim/init.local.vim"))
+  source ~/.config/nvim/init.local.vim
 endif
-
-
-"if hostname() == "foo"
-  " do something
-"endif
 

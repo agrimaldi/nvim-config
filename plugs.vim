@@ -1,17 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
 
-" Shougo's way {{{
-
 Plug 'Shougo/unite.vim'
 " Unite sources
-Plug 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
-Plug 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources':'colorscheme'}}
-"Plug 'ujihisa/unite-locate', {'autoload':{'unite_sources':'locate'}}
 Plug 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources':['history/command', 'history/search']}}
-"Plug 'osyo-manga/unite-filetype', { 'autoload' : {'unite_sources':'filetype', }}
-"Plug 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources':['quickfix', 'location_list']}}
-"Plug 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
-"Plug 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
 Plug 'Shougo/neomru.vim', {'autoload':{'unite_sources':['file_mru', 'directory_mru']}}
 " File explorer (needed where ranger is not available)
 Plug 'Shougo/vimfiler', { 'on': 'VimFiler'}
@@ -19,8 +10,6 @@ Plug 'Shougo/vimfiler', { 'on': 'VimFiler'}
 Plug 'majkinetor/unite-cmdmatch'
 " Unite plugin that provides spell suggestions
 Plug 'kopischke/unite-spell-suggest'
-
-" }}}
 
 
 Plug 'ervandew/supertab'
@@ -99,6 +88,7 @@ Plug 'vim-scripts/Vim-R-plugin', {'for': 'r'}
 
 " }}}
 
+
 " Python {{{
 
 " Autocompletion
@@ -111,7 +101,7 @@ Plug 'Yggdroot/indentLine', {'for': 'python'}
 " Show reports from coverage.py
 Plug 'alfredodeza/coveragepy.vim', {'for': 'python'}
 " Folding
-Plug 'tmhedberg/SimpylFold'
+Plug 'tmhedberg/SimpylFold', {'for': 'python'}
 
 " }}}
 "
@@ -130,6 +120,7 @@ Plug 'zyedidia/julialint.vim', {'for': 'julia'}
 Plug 'terryma/vim-expand-region'
 
 " }}}
+
 
 " Code Snippets {{{
 
@@ -167,24 +158,9 @@ Plug 'junegunn/fzf.vim'
 " }}}
 
 
-" ::::::::::::   AutomaticLatexPlugin   :::::::::::::::
-Plug 'LaTeX-Box-Team/LaTeX-Box'
-let g:LatexBox_latexmk_options = '-pvc -bibtex'
-let g:LatexBox_viewer = '/Applications/Skim.app/Contents/MacOS/Skim'
-let g:LatexBox_output_type = 'pdf'
-let g:LatexBox_autojump = 1
-
-
-
-" -----------------------------------
-" |              Colors             |
-" -----------------------------------
-
-" Colorschemes {{{
+Plug 'LaTeX-Box-Team/LaTeX-Box', {'for': 'tex'}
 
 Plug 'morhetz/gruvbox'
-
-" }}}
 
 
 call plug#end()
