@@ -18,247 +18,17 @@
 " | Put machine/user specific settings in ~/.config/nvimrc.local                      |
 " -----------------------------------------------------------------------------
 
+set nocompatible
+
 if has('vim_starting')
-    set nocompatible
-    set runtimepath+=~/.config/nvim/bundle/neobundle.vim/
-    filetype off
+    if !filereadable(expand('~/.config/nvim/autoload/plug.vim'))
+    	call system("curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim")
+        source ~/.config/nvim/plugs.vim
+        PlugInstall
+    else 
+        source ~/.config/nvim/plugs.vim
+    endif
 endif
-
-filetype off
-
-call neobundle#begin(expand('~/.config/nvim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-
-NeoBundle 'Shougo/vimproc.vim', {
-      \ 'build' : {
-      \     'windows' : 'tools\\update-dll-mingw',
-      \     'cygwin' : 'make -f make_cygwin.mak',
-      \     'mac' : 'make -f make_mac.mak',
-      \     'unix' : 'make -f make_unix.mak',
-      \    },
-      \ }
-
-" Shougo's way {{{
-
-NeoBundle 'Shougo/unite.vim'
-" Unite sources
-NeoBundleLazy 'tsukkee/unite-help', {'autoload':{'unite_sources':'help'}}
-NeoBundleLazy 'ujihisa/unite-colorscheme', {'autoload':{'unite_sources':'colorscheme'}}
-NeoBundleLazy 'ujihisa/unite-locate', {'autoload':{'unite_sources':'locate'}}
-NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : { 'unite_sources':['history/command', 'history/search']}}
-NeoBundleLazy 'osyo-manga/unite-filetype', { 'autoload' : {'unite_sources':'filetype', }}
-NeoBundleLazy 'osyo-manga/unite-quickfix', {'autoload':{'unite_sources':['quickfix', 'location_list']}}
-NeoBundleLazy 'osyo-manga/unite-fold', {'autoload':{'unite_sources':'fold'}}
-NeoBundleLazy 'tacroe/unite-mark', {'autoload':{'unite_sources':'mark'}}
-NeoBundleLazy 'Shougo/neomru.vim', {'autoload':{'unite_sources':['file_mru', 'directory_mru']}}
-" File explorer (needed where ranger is not available)
-NeoBundleLazy 'Shougo/vimfiler', {'autoload' : { 'commands' : ['VimFiler']}}
-" Unite plugin that provides command line completition
-NeoBundle 'majkinetor/unite-cmdmatch'
-" Unite plugin that provides spell suggestions
-NeoBundle 'kopischke/unite-spell-suggest'
-
-" }}}
-
-
-" ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-" :::                                                    :::
-" :::                      Bundles                       :::
-" :::                                                    :::
-" ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-
-"
-" -----------------------------------
-" |       File types support        |
-" -----------------------------------
-"NeoBundle 'pangloss/vim-javascript'
-"NeoBundle 'kelan/gyp.vim'
-"NeoBundle 'fatih/vim-go'
-"NeoBundle 'vim-scripts/plist.vim'
-"let vimrplugin_screenplugin = 0
-"let vimrplugin_assign = 0
-
-
-" -----------------------------------
-" |              Plug-ins           |
-" -----------------------------------
-"
-
-
-" ::::::::::::   SuperTab   ::::::::::::::
-NeoBundle 'ervandew/supertab'
-let g:SuperTabDefaultCompletionType = 'context'
-let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
-
-
-" Git {{{
-
-NeoBundle 'tpope/vim-fugitive', {'augroup': 'fugitive'}
-" Git gutter
-NeoBundle 'airblade/vim-gitgutter'
-" Merginal
-NeoBundle 'idanarye/vim-merginal', {'depends':['tpope/vim-fugitive']}
-" Git viewer
-NeoBundleLazy 'gregsexton/gitv', {'depends':['tpope/vim-fugitive'], 'autoload':{'commands':'Gitv'}}
-" }}}
-
-
-" Markdown & reStructuredText {{{
-
-" Markdown Syntax
-NeoBundle 'joedicastro/vim-markdown'
-" Makes a Markdown Extra preview into the browser
-NeoBundle 'suan/vim-instant-markdown'
-" reStructuredText in vim. Your personal Wiki in RST
-NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}
-
-" }}}
-
-
-" Linux tools {{{
-
-" A diff tool for directories
-NeoBundleLazy 'joedicastro/DirDiff.vim', { 'autoload': { 'commands' : 'DirDiff'}}
-
-" }}}
-
-
-" Text edition {{{
-
-" Floobits (Collaborative edition)
-"NeoBundle 'floobits/floobits-neovim'
-" TagBar
-NeoBundle 'majutsushi/tagbar'
-" easy motion
-NeoBundle 'Lokaltog/vim-easymotion'
-" multiple curosors
-NeoBundle 'terryma/vim-multiple-cursors'
-" the silver searcher
-NeoBundle 'rking/ag.vim'
-" Autocompletion of (, [, {, ', ", ...
-NeoBundle 'delimitMate.vim'
-" Smart and fast date changer
-NeoBundle 'tpope/vim-speeddating'
-" to surround vim objects with a pair of identical chars
-NeoBundle 'tpope/vim-surround'
-" extend repetitions by the 'dot' key
-NeoBundle 'tpope/vim-repeat'
-" toggle comments
-NeoBundle 'scrooloose/nerdcommenter'
-" browse the vim undo tree
-NeoBundleLazy 'sjl/gundo.vim', { 'autoload' : {'commands': 'GundoToggle'}}
-" to insert lorem ipsum blocks
-NeoBundleLazy 'vim-scripts/loremipsum', { 'autoload' :{ 'commands' : 'Loremipsum'}}
-" reveals all the character info, Unicode included
-NeoBundle 'tpope/vim-characterize'
-" marks admin
-NeoBundle 'kshenoy/vim-signature'
-" Restore views
-NeoBundle 'vim-scripts/restore_view.vim'
-" Dash bindings
-NeoBundle 'rizzatti/dash.vim'
-
-" }}}
-
-
-" R {{{
-
-NeoBundle 'vim-scripts/Vim-R-plugin'
-
-" }}}
-
-" Python {{{
-
-" Autocompletion
-"NeoBundle 'Shougo/neocomplete.vim'
-" A Python plugin
-NeoBundleLazy 'davidhalter/jedi-vim', {'autoload': {'filetypes': ['python']}}
-NeoBundleLazy 'klen/python-mode', {'autoload': {'filetypes': ['python']}}
-" Show indent lines
-NeoBundleLazy 'Yggdroot/indentLine', {'autoload': {'filetypes': ['python']}}
-" Show reports from coverage.py
-NeoBundleLazy 'alfredodeza/coveragepy.vim', {'autoload': {'filetypes': ['python']}}
-
-" }}}
-"
-"
-" Julia {{{
-
-NeoBundle 'JuliaLang/julia-vim'
-NeoBundle 'benekastah/neomake'
-NeoBundle 'zyedidia/julialint.vim'
-
-" }}}
-
-
-" Smart visual mode {{{
-
-NeoBundle 'terryma/vim-expand-region'
-
-" }}}
-
-" Code Snippets {{{
-
-" Powerful and advanced Snippets tool
-NeoBundle 'SirVer/ultisnips'
-" Snippets for Ultisnips
-"NeoBundle 'honza/vim-snippets'
-
-" }}}
-
-
-" Syntax {{{
-
-NeoBundleLazy 'elzr/vim-json', {'filetypes' : 'json'}
-NeoBundle 'scrooloose/syntastic'
-
-" }}}
-
-
-" GUI {{{
-
-" UTF-8 icons in nerdtree
-NeoBundle 'ryanoasis/vim-devicons'
-" A better looking status line
-NeoBundle 'bling/vim-airline'
-" Zooms a window
-NeoBundleLazy 'vim-scripts/zoomwintab.vim', {'autoload' :{'commands' : 'ZoomWinTabToggle'}}
-" easily window resizing
-NeoBundle 'jimsei/winresizer'
-" Window and workspace management
-NeoBundle 'szw/vim-ctrlspace'
-" NerdTree
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'Xuyuanp/nerdtree-git-plugin'
-" FZF integration
-set rtp+=/usr/local/opt/fzf
-NeoBundle 'junegunn/fzf.vim'
-
-" }}}
-
-
-" ::::::::::::   AutomaticLatexPlugin   :::::::::::::::
-NeoBundle 'LaTeX-Box-Team/LaTeX-Box'
-let g:LatexBox_latexmk_options = '-pvc -bibtex'
-let g:LatexBox_viewer = '/Applications/Skim.app/Contents/MacOS/Skim'
-let g:LatexBox_output_type = 'pdf'
-let g:LatexBox_autojump = 1
-
-
-
-" -----------------------------------
-" |              Colors             |
-" -----------------------------------
-
-" Colorschemes {{{
-
-NeoBundle 'morhetz/gruvbox'
-
-" }}}
-
-
-call neobundle#end()
-NeoBundleCheck
 
 
 " Color scheme {{{
@@ -269,13 +39,6 @@ syntax on
 colorscheme gruvbox
 set background=dark
 hi Normal ctermbg=NONE
-
-" }}}
-
-
-" Autoload configuration when this file changes ($MYVIMRC) {{{
-
-autocmd! BufWritePost vimrc source %
 
 " }}}
 
@@ -306,7 +69,6 @@ set backspace=indent,eol,start  " defines the backspace key behavior
 set matchpairs+=<:>
 set vb t_vb=                    " Turn off bell, this could be more annoying, but I'm not sure how
 set nofoldenable                " Turn off folding
-"nnoremap <leader>ev <C-w><C-v><C-l>:e $MYVIMRC<CR>
 " printing
 set pdev=pdf
 set printoptions=paper:A4,syntax:y,wrap:y,number:y
@@ -334,6 +96,13 @@ function! NumberToggle()
     endif
 endfunc
 "nnoremap <C-n> :call NumberToggle()<cr>
+
+" }}}
+
+
+" Folding {{{
+
+nnoremap <Space> za
 
 " }}}
 
@@ -376,9 +145,9 @@ endfunction
 
 " Views {{{
 
-set viewdir=$HOME/.config/nvim/views/
-silent! call MakeDirIfNoExists(&viewdir)
+set viewdir=$HOME/.config/nvim/tmp/views/
 set viewoptions=cursor,folds,slash,unix
+silent! call MakeDirIfNoExists(&viewdir)
 
 " }}}
 
@@ -453,7 +222,7 @@ function! ToggleWrap()
     endif
 endfunction
 
-nmap <silent><Leader>ew :call ToggleWrap()<CR>
+nmap <silent> <Leader>ew :call ToggleWrap()<CR>
 
 " }}}
 
@@ -533,13 +302,6 @@ nnoremap <C-w><C-o> :ZoomWinTabToggle<CR>
 
 " }}}
 
-" Fast window & buffer close and kill {{{
-
-nnoremap <Leader>k <C-w>c
-nnoremap <silent><Leader>K :bd<CR>
-
-" }}}
-
 
 " Cut/Paste {{{
 
@@ -584,9 +346,10 @@ set listchars=tab:→\ ,eol:↵,trail:·,extends:↷,precedes:↶
 set nolist
 noremap <Leader>eh :set list!<CR>
 
+
 " Delete trailing whitespaces {{{
 
-nmap <silent><Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+nmap <silent> <Leader>et :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
 " }}}
 
@@ -624,6 +387,14 @@ augroup END
 
 
 " PLUGINS Setup {{{ ===========================================================
+
+" Supertab {{{
+
+let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabContextDefaultCompletionType = '<c-x><c-o>'
+
+" }}}
+
 
 " Airline {{{
 
@@ -737,8 +508,6 @@ let g:indentLine_color_term = 239
 
 " Expanding region selection {{{
 
-"vmap o <Plug>(expand_region_expand)
-"vmap <S-o> <Plug>(expand_region_shrink)
 let g:expand_region_text_objects = {
       \ 'iw'  :0,
       \ 'iW'  :0,
@@ -777,31 +546,6 @@ let vimrplugin_screenplugin = 0
 " }}}
 
 
-" Python {{{
-
-let g:pymode_lint = 1
-let g:pymode_rope = 0
-let g:pymode_syntax_all = 1
-
-let g:jedi#auto_vim_configuration = 1
-let g:jedi#completions_enabled = 1
-let g:jedi#popup_select_first = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#use_tabs_not_buffers = 0
-
-
-" Install current package
-nmap <silent><F5> :Silent /usr/local/anaconda3/bin/pip install --upgrade .<CR>
-
-let g:pymode_breakpoint_bind = '<F6>'
-
-let g:jedi#goto_assignments_command = '<Leader>rg'
-let g:jedi#goto_definitions_command = '<Leader>rgg'
-let g:jedi#rename_command = '<Leader>rr'
-
-" }}}
-
-
 " Neocomplete {{{
 
 let g:neocomplete#enable_at_startup = 1
@@ -829,18 +573,18 @@ function! ToggleNeoComplete()
       let g:neocomplete#enable_auto_select = 1
   endif
 endfunction
-nnoremap <silent><Leader>ea :call ToggleNeoComplete()<CR>
+nnoremap <silent> <Leader>ea :call ToggleNeoComplete()<CR>
 
 " Enable omni completion.
 :set completeopt=longest,menuone
-autocmd FileType php set omnifunc=phpcomplete#CompletePHP
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType c set omnifunc=ccomplete#Complete
+autocmd FileType c setlocal omnifunc=ccomplete#Complete
 autocmd FileType julia setlocal omnifunc=LaTeXtoUnicode#omnifunc
 autocmd FileType r setlocal omnifunc=rcomplete#CompleteR
 
@@ -849,13 +593,6 @@ if !exists('g:neocomplete#sources#omni#input_patterns')
 endif
 
 let g:neocomplete#sources#omni#input_patterns.python='[^. \t]\.\w*'
-
-" }}}
-
-
-" Neobundle {{{
-
-let g:neobundle#log_filename = $HOME.'/.config/nvim/tmp/neobundle.log'
 
 " }}}
 
@@ -870,7 +607,7 @@ let g:neomru#directory_mru_path = $HOME.'/.config/nvim/tmp/neomru/directory'
 
 " Syntastic {{{
 
-nmap <silent><Leader>N :SyntasticCheck<CR>:Errors<CR>
+nmap <silent> <Leader>N :SyntasticCheck<CR>:Errors<CR>
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -905,24 +642,23 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }}}
 
 
-" Ctrl-Space {{{
+" Sessions / startify {{{
 
-nnoremap <silent><Leader><Leader>p :CtrlSpace<CR>
-"nnoremap <silent><Leader>p :CtrlSpace O<CR>
-"nnoremap <silent><Leader>b :CtrlSpace b<CR>
-let g:CtrlSpaceLoadLastWorkspaceOnStart = 1
-let g:airline_exclude_preview = 1
-if executable('ag')
-    let g:CtrlSpaceGlobCommand = 'ag -l --nocolor -g ""'
-endif
+nnoremap <F5> :mksession<CR>
+let g:startify_session_dir = '~/.config/nvim/tmp/sessions'
+let g:startify_session_persistence = 1
+let g:startify_session_autoload = 1
+silent! call MakeDirIfNoExists('~/.config/nvim/tmp/sessions')
 
 " }}}
 
 
 " FZF {{{
 
-nnoremap <silent><Leader>p :Files<CR>
-nnoremap <silent><Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>p :Files<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>m :History<CR>
+nnoremap <silent> <Leader>f :Ag<CR>
 
 " }}}
 
@@ -978,24 +714,24 @@ endif
 let g:junkfile#directory=expand($HOME."/.config/nvim/tmp/junk")
 
 " files
-"nnoremap <silent><Leader>p :Unite -silent -start-insert file_mru file_rec/async<CR>
+"nnoremap <silent> <Leader>p :Unite -silent -start-insert file_mru file_rec/async<CR>
 " buffers
-"nnoremap <silent><Leader>b :Unite -silent buffer<CR>
+"nnoremap <silent> <Leader>b :Unite -silent buffer<CR>
 " tabs
-nnoremap <silent><Leader>B :Unite -silent tab<CR>
+nnoremap <silent> <Leader>B :Unite -silent tab<CR>
 " buffer search
-nnoremap <silent><Leader>f :Unite -silent -no-split -start-insert -auto-preview line<CR>
-nnoremap <silent><Leader>fw :UniteWithCursorWord -silent -no-split -auto-preview line<CR>
+"nnoremap <silent> <Leader>f :Unite -silent -no-split -start-insert -auto-preview line<CR>
+nnoremap <silent> <Leader>fw :UniteWithCursorWord -silent -no-split -auto-preview line<CR>
 " yankring
-nnoremap <silent><Leader>y :Unite -silent history/yank<CR>
+nnoremap <silent> <Leader>y :Unite -silent history/yank<CR>
 " grep
-nnoremap <silent><Leader>a :Unite -silent -auto-preview -auto-highlight -no-split grep:.<CR>
+nnoremap <silent> <Leader>a :Unite -silent -auto-preview -auto-highlight -no-split grep:.<CR>
 " se(a)rch (w)ord in current directory
-nnoremap <silent><Leader>aw :UniteWithCursorWord -silent -auto-preview -auto-highlight -no-split grep:.<CR>
+nnoremap <silent> <Leader>aw :UniteWithCursorWord -silent -auto-preview -auto-highlight -no-split grep:.<CR>
 " help
 "nnoremap <silent> g<C-h> :UniteWithCursorWord -silent help<CR>
 " tasks
-nnoremap <silent><Leader>; :Unite -silent -toggle grep:%::FIXME\|TODO\|NOTE\|XXX\|COMBAK\|@todo<CR>
+nnoremap <silent> <Leader>; :Unite -silent -toggle grep:%::FIXME\|TODO\|NOTE\|XXX\|COMBAK\|@todo<CR>
 
 " menu
 so ~/.config/nvim/unite-menu-config.vim
@@ -1015,12 +751,6 @@ set si " smartindent (local to buffer)
 " Scrollbars ******************************************************************
 set sidescrolloff=10
 set numberwidth=4
-
-
-
-" Sessions ********************************************************************
-" Sets what is saved when you save a session
-"set sessionoptions=blank,buffers,curdir,folds,help,resize,tabpages,winsize
 
 
 " Abbreviations
@@ -1052,24 +782,10 @@ if has("unix")
 endif
 
 
-
-" -----------------------------------------------------------------------------
-" |                               Startup                                     |
-" -----------------------------------------------------------------------------
-" Open NERDTree on start
-" autocmd VimEnter * exe 'NERDTree' | wincmd l
-
-
-
 " -----------------------------------------------------------------------------
 " |                               Host specific                               |
 " -----------------------------------------------------------------------------
-if filereadable(expand("~/.config/nvimrc.local"))
-  source ~/.config/nvimrc.local
+if filereadable(expand("~/.config/nvim/init.local.vim"))
+  source ~/.config/nvim/init.local.vim
 endif
-
-
-"if hostname() == "foo"
-  " do something
-"endif
 

@@ -1,8 +1,8 @@
-bundle
-.netrwhist
-view/
+plugged/
+bundle/
 tmp/
 dirs
-.tags
-views
 shada/
+autoload/
+.netrwhist
+.tags
